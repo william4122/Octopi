@@ -291,5 +291,3 @@ Write-Host "Restarting Defender..."
 sc config WinDefend start= Auto
 sc start WinDefend
 Set-MpPreference -DisableRealtimeMonitoring $false
-
-#Remove-Item -Path $attackDir -Recurse -force -ErrorAction Ignore
