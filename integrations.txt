@@ -1,0 +1,1849 @@
+Integrations
+
+OpenSecurity and navigation
+SECURITY  In Datto RMM, default security level of Administrator. In Autotask, security level of API User. Refer to Permissions.
+
+NAVIGATION  Setup > Autotask
+
+VIDEO  Using Autotask with Datto RMM
+Learn how to configure the integration of Autotask with Datto RMM for a fully unified experience.
+
+Permissions
+IMPORTANT  You must have a default security level of Administrator in Datto RMM when configuring the integration. If you have more than one security level, ensure Administrator is selected as your default security level. For more information, refer to Add a user in the legacy UI and Creating a user in the New UI.
+
+IMPORTANT  You must use an Autotask sync account when running the integration setup wizard, and this PSA user account must have a security level of API User. Make sure that in the security level settings, the check box of Not required to change password (password does not expire) is selected. Refer to this topic in the Autotask Online Help: Other security settings.
+
+IMPORTANT  Ensure that in Autotask all Protected Data Permissions are enabled for the sync account. You can do this in Autotask by navigating to Autotask PSA menu > Admin > Company Settings & Users > Resources/Users (HR) > Security > Protected Data Permission. For more information, refer to this topic in the Autotask Online Help: Manage permission to view protected data.
+
+About the integration
+
+The advanced integration of Autotask and Datto RMM introduces a truly unified business management platform. It includes the following features:
+
+NOTE  For more information about the following features in Autotask, refer to this topic in the Autotask Online Help: Integration workflows.
+
+Datto RMM users can be mapped to Autotask resources and roles, and Datto RMM sites can be mapped to Autotask companies. When the integration is enabled, Autotask companies can be mapped to one or multiple Datto RMM sites. The mapping can take place in Datto RMM or Autotask.
+NOTE  For more information, refer to this topic in the Autotask Online Help: Navigating from the Autotask company to the RMM site.
+
+Integrated ticketing no longer synchronizes Datto RMM and Autotask tickets. Instead, the Single System of Record (SSoR) functionality provides direct access from Datto RMM tickets to Autotask and vice versa, with more detailed ticket information. With the integration enabled, the ticket entity lives in Autotask only. Therefore, any Datto RMM ticket history prior to enabling the integration is no longer visible.
+Each monitor type and the end client Agent tickets can be configured to create tickets in Autotask in designated queues with configurable issue, sub-issue, work type, and ticket note defaults. The defaults can be overridden for specific monitors.
+Datto RMM device types can be mapped to Autotask products and configuration item types.
+Datto RMM device user-defined fields (UDFs) can be mapped to Autotask configuration item UDFs.
+Datto RMM alerts can automatically be closed if the Autotask alert ticket is completed using an Autotask workflow rule and extension callout. Workflow rules in Autotask automatically perform certain updates and actions when specific events happen and conditions are met. You have a number of attributes that are specific to Datto RMM and that are available for use in Autotask workflow rules.
+NOTE  To learn how to add and edit workflow rules, refer to the workflow rules topics in the Autotask Online Help: Workflow rules.
+
+The single sign-on (SSO) functionality allows you to be automatically logged in to Datto RMM if you are already logged in to Autotask and you click an SSO-enabled link from within Autotask.
+You can make your workflow simpler by having your Autotask alert ticket self-heal or clear automatically when the corresponding Datto RMM alert is resolved. You can also specify when a Datto RMM alert should be considered repeating or related to another alert.
+You can use attributes that are specific to Datto RMM in Autotask workflow rules.
+Datto RMM alert and device dashboard tabs are available in Autotask. The dashboards are configured based on the additional device data that is synced between Datto RMM and Autotask.
+Datto RMM devices can be mapped to billing contracts in Autotask. Datto RMM devices appear in Autotask in real time without a manual device discovery process. We have added an Endpoint Management Configuration Item Mapping page in Autotask where you can assign a contact, a billing contract and, for recurring service contracts, a service or bundle to the device. You can also set the device as Reviewed for Contract (which removes it from the page).
+NOTE  For more information, refer to this topic in the Autotask Online Help: Mapping discovered devices to a contact and contract.
+
+You can access a number of Datto RMM tools right from Autotask using right-click and context menus.
+You can configure the integration in Datto RMM after downloading the Autotask component from the ComStore.
+
+How to...
+OpenDownload the Autotask component
+Download the Autotask component from the ComStore in the legacy UI to configure the integration.
+
+IMPORTANT  If you have previously used Datto RMM 's standalone ticketing, note that as soon as you download the Autotask component, your Datto RMM standalone ticketing and ticket history will no longer be accessible. Therefore, you are advised to review and complete any open tickets before enabling the Autotask integration. You can switch back to Datto RMM standalone ticketing by deleting the Autotask component, at which point your Datto RMM ticket history prior to downloading the Autotask component will become available again. For more information, refer to Disable the Autotask integration.
+You are also advised to re-configure your monitor settings after configuring the integration. For more information, refer to Manage monitors in the legacy UI or Monitors - New UI in the New UI.
+
+Log in to the Datto RMM Web Portal (legacy UI).
+Click the ComStore tab.
+Enter Autotask into the search bar at the top and click the Search ComStore button.
+
+
+Click on the search result, and click the Add to my Component Library button in the pop-up window. This will add the component to the list of your downloaded components. Click OK.
+OpenAccess the Autotask Integration page
+Once you have downloaded the Autotask component, you can access the Autotask Integration page.
+
+Click Setup in the Datto RMM Web Portal.
+Click the Autotask tab.
+
+OpenConfigure company (site) and resource (user) mapping
+The first steps in the integration setup process are the following:
+
+Enable the integration.
+Map your Autotask companies and resources to your Datto RMM sites and users.
+IMPORTANT  Refer to the Permissions section in this document to learn about the required security level settings in both Datto RMM and Autotask.
+
+IMPORTANT  We recommend that only one Datto RMM account be synchronized to an Autotask database. Connecting an additional Datto RMM account to the same Autotask database will remove the original link, and the existing integration will no longer function.
+
+Toggle the Integration Status field to ON and click OK in the confirmation dialog box. This will launch the setup wizard, which opens the Autotask Credentials page.
+Enter your Autotask Username and Password. This will enable the integration between Datto RMM and Autotask.
+IMPORTANT  You must use an Autotask user account with a security level of API User (a non-billed Autotask resource) to enable the integration. Refer to Permissions. This will help you avoid difficult situations, such as when the resource whose credentials were used for the integration changes their password or leaves the company. For more information about the API User, refer to these topics in the Autotask Online Help: API User (system) and The API tracking identifier.
+
+Click Test connection...
+If the credentials are valid, a green check mark will appear.
+
+
+
+Click Next.
+On the Autotask PSA company types page, select the Autotask company types you want to retrieve.
+
+
+Click Next.
+On the Map Autotask PSA resources page, you can map your Datto RMM users to specific resources and roles in Autotask (optional).
+NOTE  This is used when a ticket is mapped from Datto RMM to Autotask and gets assigned to a primary resource and role in Autotask.
+
+NOTE  You must create your users in Datto RMM before you can map them to Autotask resources. Refer to Add a user in the legacy UI and Creating a user in the New UI.
+
+
+
+Field	Description
+AEM User	The last name and first name of your Datto RMM user. The username is displayed in brackets. This field is not editable.
+Autotask PSA Resource	The drop-down menu lists all resources that are currently active in Autotask. Select a name from the list or start typing the name of the resource to narrow the list. The selected resource will be mapped to your Datto RMM user.
+IMPORTANT  Ensure that you do not link a Datto RMM user to an Autotask resource with a security level of API User or Dashboard User. Resources with a security level of API User or Dashboard User cannot log in to Autotask, nor can they be assigned to data, for example, a ticket. For more information, refer to the following in the Autotask Online Help: API User (system), Dashboard User (system).
+
+Autotask PSA Role	The drop-down menu lists all the roles that the selected resource is associated with in Autotask. Choose one of the Autotask roles that should be mapped to the Datto RMM user.
+NOTE  When you map a Datto RMM user to an Autotask resource, you must select an Autotask role. In Autotask, you cannot assign a resource to a ticket without also assigning a role.
+
+Click Next.
+On the Review Integration Setup page, review the setup options you have selected so far.
+
+
+Check Analyze site and company mapping now.
+Click Save setup and confirm your request at the confirmation dialog box by clicking OK.
+The wizard will now compare your Autotask company names to your Datto RMM site names and present a summary of possible matches. At the end of the process, you will see a confirmation dialog box confirming that the analysis has completed.
+Review the mapping rules within the summary of possible mappings between your Datto RMM sites and Autotask companies.
+
+
+EXAMPLE  In this screenshot, you can see that there are two mapping rules in place, that is, two site/company names are identical in Datto RMM and Autotask. However, two Datto RMM sites could not be matched to any of the Autotask companies, and 144 Autotask companies could not be mapped to any of the Datto RMM sites.
+
+Select an Autotask Account Manager from the drop-down menu. This resource will be assigned as the Autotask Account Manager for any new Autotask companies created by Datto RMM.
+If you would like the system to create new Autotask companies and Datto RMM sites for those with no mappings, select the Create new companies and Create new sites radio buttons and proceed to step 21.
+In some cases, you may wish to manually add new mapping rules on the Edit Mapping Rules page to avoid creating any duplicate companies and sites, as well as to have more control over which companies and sites should or should not be synced. Some of these cases are as follows:
+You think that more mapping rules should have been found, and it has only failed because the company and site names were slightly different.
+You would like the system to create new companies and sites for you, but you would like to make a few exceptions.
+You would like to map multiple Datto RMM sites to the same Autotask company.
+To manually add new mapping rules on the Edit Mapping Rules page, perform the following:
+Under Add new mapping rule, click on the Start typing AEM site name... drop-down menu and type the name of a Datto RMM site or select it from the list. Then, map it to an Autotask company name by clicking in the Start typing Autotask PSA company name... field and selecting the correct company.
+
+
+Select Do not sync in either drop-down menu to specify which companies or sites should not be synced.
+
+You can also opt to Create new site or Create new company by selecting that option in the respective drop-down menu.
+
+NOTE  If you cannot find a Datto RMM site or an Autotask company in the drop-down menus, then that site or company already has a mapping rule. Use the filters (New, Mapped, Unmapped sites, Unmapped companies) and/or the Search field in the same window under the Add new mapping rule area to search for existing mapping rules. The Unmapped sites and Unmapped companies filters will return sites and companies that are set to Do not sync. You can always delete any mapping rule by clicking the Delete mapping rule icon  on the right of the screen. The site/company will then re-appear in the respective drop-down menu.
+
+
+Once you have found the matching company or site, click the Add mapping rule icon  on the right of the screen. This will add the new mapping rule to the bottom of the page.
+
+NOTE  The Autotask company column will show the Autotask company ID in brackets.
+
+NOTE  You can map more than one Datto RMM site to the same Autotask company.
+
+Click Save to save your new mapping rules.
+You will now see an updated number next to your mapping rules on the Autotask Integration page.
+If you would like the system to create new Autotask companies and Datto RMM sites for the missing ones, select the Create new companies and Create new sites radio buttons.
+If you would not like to map the rest of the missing companies and sites, select the Do not sync radio button next to them.
+
+Click Accept and Continue....
+Click OK on the confirmation dialog box. The mapping rules will be applied. A number of progress dialog boxes will appear.
+Select Cancel mapping if you wish to cancel the mapping.
+The current mapping rules will then be displayed on the page.
+
+
+A new section called Sync will also be added to the Autotask Integration page.
+A few things to note...
+If you need to update the resource to user mapping, follow steps 1-8 of the guide above.
+If you add a new site to your Datto RMM account, you have the option to map it to an Autotask company straight away, and you do not have to re-run the mapping analysis of the integration. Refer to Adding a site.
+The site-to-company mapping is a manual process, and site or company name changes are not synchronized automatically. For example, if a Datto RMM site is already mapped to an Autotask company and you change the name of either the site or the company, you need to re-run the mapping analysis to see the updated name. The mapping will still be based on the Autotask company ID, but the new name will only appear if you re-run the analysis. Refer to Re-run mapping analysis.
+If you need to create a mapping between a site and a company that were both previously set as Do not sync, you will need to remove the Do not sync mapping rule entries for both the site and the company in order for the change to take effect.
+Changing a Datto RMM site name will not rename the mapped Autotask company and vice versa.
+OpenConfigure SSO
+SSO is an authentication process that allows a user to enter one username and password to access multiple (connected) systems.
+
+If you would like to permit users to automatically log in to Datto RMM when clicking an SSO-enabled link from Autotask, do the following:
+
+Locate the Sync section on the Autotask Integration page.
+Enable the Single Sign-On option by toggling it ON.
+
+
+NOTE  Two-Factor Authentication should be enabled in both Autotask and Datto RMM so users are always prompted for a one-time password when they log in to the first application.
+
+NOTE  The first time you are logged in to Autotask after enabling the SSO functionality and you click on a link to access Datto RMM , you will be asked to log in to your existing Datto RMM account to set up the link. Going forward, you will automatically be logged in to Datto RMM when clicking an SSO-enabled link from Autotask. When establishing the SSO link, make sure that you link your Autotask database to the correct Datto RMM account; that is, ensure that the Datto RMM login credentials you enter belong to the Datto RMM account integrated with your Autotask database.
+To remove the link in Datto RMM, refer to Edit a user in the legacy UI and Editing a user in the New UI.
+To learn how to link or unlink your Autotask user profile and Datto RMM user account in Autotask, refer to this topic in the Autotask Online Help: Linking or unlinking your Autotask and RMM user profiles.
+
+IMPORTANT  We recommend that only one Datto RMM account be synchronized to an Autotask database. Connecting an additional Datto RMM account to the same Autotask database will remove the original link, and the existing integration will no longer function.
+
+OpenConfigure ticket integration
+The next step in the integration setup process is to configure the ticket integration between Datto RMM and Autotask:
+
+Click Setup... next to Ticket Integration.
+On the Ticket Defaults page, you can select the default values for the ticket source and priority that will be mapped from Datto RMM to Autotask.
+
+
+Field	Description
+Source	From the drop-down menu, select the source you would like to assign to all alert tickets created in Autotask by Datto RMM.
+Priority mapping	Select an Autotask ticket priority from the drop-down menu to map it to a Datto RMM alert priority.
+Click Next.
+On the Ticket Attributes page, you can map the queue, issue, sub-issue, and work type to the Autotask alert ticket, for each monitor type, and for the end client Agent tickets.
+
+
+Field	Description
+Apply to all rows	Use this option to apply the same selection of Queue / Issue / Sub-Issue / Work Type to every monitor type / origin.
+Monitor Type / Origin	Displays all Datto RMM monitor types and the end client Agent tickets (that is, tickets created from a device via the Agent installed).
+Queue	The drop-down menus list all active queues as configured in Autotask. Select a queue to map it to each monitor type and the end client Agent tickets. When an alert ticket is created in Autotask, it will be assigned the selected queue. This field is required.
+Issue	The drop-down menus list all active issue types as configured in Autotask. Select an issue type to map it to each monitor type and the end client Agent tickets. When an alert ticket is created in Autotask, it will be assigned the selected issue type. This field becomes active as soon as you select a queue. Selecting an issue type is optional.
+IMPORTANT  If you choose to select an Issue type, you must also select a Sub-Issue type. Otherwise, tickets will be created with neither.
+
+Sub-Issue	The drop-down menus list all active sub-issue types for the selected issue type as configured in Autotask. Select a sub-issue type to map it to each monitor type and the end client Agent tickets. When an alert ticket is created in Autotask, it will be assigned the selected sub-issue type. Selecting a sub-issue type is optional.
+Work Type	The drop-down menus list all active work types as configured in Autotask. Select a work type to map it to each monitor type and the end client Agent tickets. When an alert ticket is created in Autotask, it will be assigned the selected work type. This field becomes active as soon as you select a queue. Selecting a work type is optional.
+IMPORTANT  If the selected queue, issue / sub-issue, or work type gets inactivated in Autotask, the ticket integration will not work.
+
+NOTE  We recommend that you re-run the ticket integration setup after every Datto RMM release to ensure that your monitor types are properly configured.
+
+NOTE  In case a new monitor type has been introduced in Datto RMM and you have not re-configured the ticket integration for that monitor type yet, tickets created through that monitor will be assigned to the Monitoring Alert queue in Autotask by default.
+
+Click Next.
+On the Ticket Note Defaults page, you can configure the default ticket note type and specify its default publish setting.
+
+
+Field	Description
+Default ticket note type	Select a default note type to map it to ticket notes manually created by users via Datto RMM.
+NOTE  Notes automatically created by Datto RMM will use the system note type RMM Note.
+
+Default ticket note publish to	From the drop-down menu, select one of the following options:
+• All Autotask Users: All Autotask users.
+• Internal Project Team: Internal users only.
+• Internal & Co-Managed: Internal users and external resources that have been configured with co-managed access and visibility within Autotask. For more information, refer to Autotask for Co-managed IT.
+NOTE  Notes automatically created by Datto RMM will be published to internal users only.
+
+Click Next.
+On the Ticket Integration Review page, review the ticket integration options you have selected.
+
+Click Save settings.
+You will now be directed to the Autotask Integration page where you will see a summary of the ticket integration options you have selected. In addition, Ticket Integration will be automatically toggled ON.
+NOTE  By default, tickets created from alerts are not assigned to any resource in Autotask.
+
+NOTE  If a monitor is configured to create a ticket when an alert is raised but the device cannot get synchronized to Autotask (for example, the contract or contact of the Autotask configuration item is inactive, the device sync is switched off, etc.), Datto RMM will queue the device sync event and will attempt to create a ticket three times (every time a device sync is triggered, approximately once every minute). If the device fails to be synchronized within this time frame, a ticket will still be created for the corresponding Autotask company containing the device name and ID and a link to the device in Datto RMM. In case the Datto RMM site is no longer mapped to an Autotask company, a ticket will be created for the zero account.
+
+NOTE  If an Autotask configuration item synced with a Datto RMM device has a contact assigned, but that contact is inactive, the ticket creation will fail.
+
+NOTE  If the ticket creation fails (for example, because of changes made to credentials, queues, categories, security settings, and so forth), a notification email will be sent to the email addresses set to receive alerts. If no email address listed under Setup > Account Settings > Email Recipients (legacy UI) or Setup > Global Settings > Email Recipients (New UI) has Alerts selected, then the failed ticket email will default to the email address configured under Setup > My Info > Account Email. Refer to Email Recipients in Account Settings (legacy UI) and Email Recipients in Global Settings (New UI). The notification email will specify the error message and the reason for the error.
+
+NOTE  You can switch off the ticket integration for individual sites in Site Settings. Refer to the Autotask PSA section in Site Settings.
+
+NOTE  For information about Agent ticketing for end users, refer to Integrated ticketing with Autotask.
+
+OpenConfigure device synchronization
+The next step is to configure the device synchronization between Datto RMM and Autotask.
+
+NOTE  In Autotask, devices that are installed for a customer company are called configuration items. As all configuration items are based on a product, Datto RMM devices must be mapped to Autotask at product level.
+
+On the Autotask Integration page, locate the Sync section and click Setup... next to Device Sync.
+On the Select Autotask PSA Products page, map the Datto RMM device types to Autotask products and configuration item types.
+
+
+Field	Description
+AEM Device Type	Device type as displayed in Datto RMM.
+Autotask PSA Product	Select an existing Autotask product to map to your Datto RMM device type, or allow the system to create a matching product in Autotask for you.
+NOTE  We recommend that you allow the system to create a matching product if you do not see the corresponding Autotask product. The new product will have a prefix of AEM_devicetype. This will help to differentiate them from existing Autotask products.
+
+NOTE  Product Names created by the system (for example, AEM_Laptop, AEM_Desktop, etc.) will not have Product Categories in Autotask by default; the devices will be grouped in an Uncategorized Product Category. To change this, follow these steps in Autotask: navigate to Autotask PSA Menu > Admin > Features & Settings > Products & Services > Products > search for the Product Name (for example, AEM_Laptop) > select the context menu next to the Product and click Edit Product > select the context button next to Product Category > assign a Product Category > Save & Close. This will assign the selected Product Category to both existing and future devices of this Product Name.
+
+NOTE  For information on how the Product field in synchronized for new and existing configuration items, refer to Device sync logic and frequency.
+
+If you have more than 500 Autotask products, you will see empty text fields instead of drop-down menus in the Autotask PSA Product column when you run the Device Sync Setup for the first time. You will be able to enter:
+• new: Create a new product.
+• none: If you don't want to sync a device type, enter none in the Autotask PSA Product column and select Do not map in the Autotask PSA Configuration Item Type column.
+• product ID:product name: Map an existing product (for example, 29684965:Dell Latitude E5550).
+NOTE  You can find the product ID in Autotask by navigating to Autotask menu > Admin > Features & Settings > Products & Services > Products > search for a product > Edit Product.
+
+
+When you re-run the device sync setup, your previous selections will be remembered.
+Autotask PSA Configuration Item Type	Optionally, select a matching Autotask PSA Configuration Item Type from the drop-down menu for each Datto RMM device type. The drop-down menu contains all configuration item types as configured in Autotask.
+NOTE  In Autotask, a Configuration Item Type is the classification of a configuration item. It also determines which available UDFs you can apply.
+
+NOTE  We recommend that you re-run the device sync setup after every Datto RMM release to ensure that each Datto RMM device type is mapped to an Autotask product.
+
+Click Next.
+On the Select Material Code page, select the material code that will be used for all devices mapped from Datto RMM to Autotask.
+NOTE  Material Code is a required field in Autotask. It is a billing code used for billing products associated with tickets, contracts, or projects.
+
+
+
+Click Next.
+On the Sync Options page, specify how Datto RMM should sync device information to Autotask configuration items. You can select or clear any of the following options:
+
+
+Overwrite PSA Reference Name when different from AEM Hostname (selected by default)
+Overwrite PSA Reference Number when different from AEM Device ID (selected by default)
+EXAMPLE  For example, if at the initial sync Datto RMM finds a matching Autotask configuration item for a Datto RMM device and that configuration item has a Reference Name, the value in the Reference Name field will be overwritten if the check box Overwrite PSA Reference Name when different from AEM Hostname is selected. The same logic will be applied at any subsequent sync.
+
+NOTE  If the overwrite options are not selected in Datto RMM and the matching configuration item's Reference Name and Reference Number fields are empty in Autotask, the fields will be populated with the device's hostname and device ID at the initial device sync.
+
+Click Next.
+On the Select User-Defined Fields page, select Sync User-Defined Fields to be able to select the UDFs that you would like to map as Autotask configuration item UDFs. Click All to select all the UDFs. Click None to remove your selections.
+NOTE  Only account-level UDFs will be synced, either with their default label or with their account label (if they have one). The account labels will appear to the right of the default labels in the wizard.
+Site labels (UDF labels at site level) will not be synced and will not be displayed in the wizard.
+
+NOTE  If you click the Refresh button , the screen will return to its last saved state.
+
+
+
+Click Next.
+On the Device Sync Review page, review the product mappings, material code, sync options, and UDFs selected for device synchronization.
+Select Sync my devices now and click Save settings.
+
+
+NOTE  If you check Sync my devices now and save your settings, the wizard will close and the integration page will appear. However, you may also clear the Sync my devices now option and click Sync devices now... directly on the Autotask Integration page.
+
+NOTE  Only devices with complete audit data are synchronized.
+
+NOTE  New and existing devices are synced differently. For information about the device sync logic and its frequency, refer to the Device sync logic and frequency section below.
+
+You will now be directed back to the Autotask Integration page, where you will see a summary of the device sync options you have configured.
+OpenDevice sync logic and frequency
+Device sync logic
+Datto RMM will attempt to find a matching Autotask configuration item by applying the device sync logic outlined below:
+
+Check if the device has been audited or if it meets the audit exclusion criteria.
+If the answer is no, skip the device.
+If the answer is yes, go to the next step.
+NOTE  The following device types are excluded from the audit requirement: Datto Networking devices, Datto Continuity devices, and network devices added to Datto RMM more than 24 hours ago.
+
+Check if the device is already mapped to an Autotask configuration item.
+If a match is found, sync the device.
+If no match is found, go to the next step.
+Search for an Autotask configuration item whose native field of AEMDeviceUID matches the Datto RMM device ID.
+NOTE  The Autotask native field of AEMDeviceUID is not visible in the Autotask UI and it cannot be edited.
+
+If a matching configuration item is found and it's active, map and sync the device. If it's inactive, activate it, then map and sync the device.
+
+If no match is found, go to the next step.
+
+In the Autotask company mapped to the RMM site or sites, search for an Autotask configuration item that has the same hostname (in Autotask: Reference Name) and serial number as the Datto RMM device.
+If only one matching configuration item is found and it's active, populate the Autotask native field of AEMDeviceUID with the Datto RMM device ID, then map and sync the device.
+If the configuration item is inactive, activate it, populate the native field of AEMDeviceUID, then map and sync the device.
+If more than one matching configuration item is found and they are active, identify the oldest, populate the Autotask native field of AEMDeviceUID with the Datto RMM device ID, then map and sync the device.
+If the configuration items are inactive, identify the oldest, activate it, populate the native field of AEMDeviceUID, then map and sync the device.
+If no match is found, go to the next step.
+Check if there are multiple devices with the same serial number in the RMM site or sites that are mapped to the Autotask company.
+If multiple matching devices are found, go to step 7.
+If only one matching device is found, go to the next step.
+Search for an Autotask configuration item that has the same serial number as the Datto RMM device.
+If a match is found, repeat the same checks as in steps 4.a and 4.b.
+If no match is found, go to the next step.
+Create a new Autotask configuration item, populate the native field of AEMDeviceUID, then map and sync the device.
+A few notes to consider
+When a device is moved from one site to another in Datto RMM, and the new site is mapped to an Autotask company, the matching Autotask configuration item will be inactivated in the original Autotask company. In the new Autotask company, either an existing configuration item with a matching AEMDeviceUID will be made active or a new configuration item will be created.
+When a device is moved from one site to another in Datto RMM, and the new site is not mapped to any Autotask company, the formerly linked Autotask configuration item will remain in the original Autotask company and will be inactivated.
+When a device is deleted in Datto RMM, the corresponding Autotask configuration item will be inactivated.
+If an Autotask configuration item has been set to inactive, but the Datto RMM device is still syncing with it, the configuration item will be made active again.
+The Product and Configuration Item Type fields of an Autotask configuration item are only synchronized (applied) when a new configuration item is created. When an existing configuration item is synchronized, the Product and Configuration Item Type fields will not be overwritten.
+If you change the default label of a UDF in Account Settings (legacy UI) or Global Settings (New UI) in Datto RMM, you need to re-run the device synchronization setup to ensure the UDF mapping is updated in Autotask. Refer to Configure device synchronization.
+Device sync frequency
+New (unsynced) devices will sync immediately after an initial audit has occurred.
+
+For existing (previously synced) devices, a device sync will be triggered once every 24 hours, even when the Sync devices now... option is used. If, at the time of synchronization, the existing mapping is no longer valid (for example, the configuration item has been deleted, details have changed, etc.), the device sync logic will be re-applied.
+
+OpenConfigure alert rules
+Alert rules allow you to handle Datto RMM alerts and their corresponding Autotask alert tickets. You can configure alert rules that specify when an alert is considered a repeat of a previous alert (the same monitor generates an alert on the same device within a specified time), or a related alert (a different monitor generates an alert on the same device within a specified time). Both events generate a ticket note in Autotask, making you aware of the context for the alert ticket.
+
+Additionally, if an alert clears, you can specify how to handle the corresponding Autotask ticket if the status is New and if the status is not New or Complete.
+
+On the Autotask Integration page, locate the Sync section and click Setup... next to Alert Rules.
+Configure your alert rules:
+Repeating and Related Alerts
+Alert rule	You can define when you consider a Datto RMM alert to be repeating or related.
+• On the Repeating Alerts page, select the Consider an AEM alert to be repeating if any Autotask PSA alert tickets have been created for the same monitor and the same device ... check box.
+
+• On the Related Alerts page, select the Consider an AEM alert to be related if any Autotask PSA alert tickets have been created for the same device (but a different monitor) ... check box.
+
+NOTE  After the Autotask 2017.1 release, repeating and related alert notes are only added to open Autotask tickets.
+
+Time threshold	Once any of the above check boxes has been set to active, you can set a time threshold to be used with these alerts. Select minutes, hours, or days from the drop-down menu and enter a number in the field. The threshold is based off the original alert.
+NOTE  The maximum value in each of the fields is 60 days / 99 hours / 999 minutes. You can only use integers.
+
+Self-Healed and Cleared Alerts
+Alert rule	You can define how an alert should self-heal or clear.
+• To enable self-healed alerts handling, select the If an AEM alert clears and its corresponding Autotask PSA alert ticket's status is New (self-heal), add a note to the existing Autotask alert ticket and set its status to: check box.
+• To enable cleared alerts handling, select the If an AEM alert clears and its corresponding Autotask PSA alert ticket's status is NOT New or Complete, add a note to the existing Autotask PSA alert ticket and set its status to: check box.
+
+Status change	Once any of the above check boxes has been set to active, you can set the status of the Autotask alert ticket by choosing it from the drop-down menu.
+NOTE  The drop-down menu contains all active statuses as configured in Autotask. Choose No change if you would not like the status to be updated.
+
+Click Next.
+On the Alert Rules Review page, review the alert rules you have configured.
+
+
+Click Save settings.
+You will now be directed back to the Autotask Integration page where you will see a summary of the alert rules you have set up.
+OpenRe-run mapping analysis
+At times, you may want to edit your existing mapping rules or completely re-run your mapping analysis.
+
+Locate the Current Mapping Rules section on the Autotask Integration page.
+To edit your existing mapping rules, click Edit mapping rules... and follow steps 15-18 of Configure company (site) and resource (user) mapping.
+To run your mapping analysis again, click Re-run mapping analysis.... You can leave the Keep my existing mappings option checked. This will keep your current mapping rules. If you clear the option, all previous mappings will be disregarded.
+
+
+Click OK. This will update your existing mapping rules between your Datto RMM sites and Autotask companies. For further instructions, refer to steps 14-24 of Configure company (site) and resource (user) mapping.
+NOTE  You can discard the new analysis by clicking on Discard analysis....
+
+OpenReset the Autotask integration
+You have the option to re-configure the integration with a new Autotask username and password while keeping all other settings intact.
+
+Click Setup in the Datto RMM Web Portal.
+Click the Autotask tab.
+Under General Settings, click Run setup wizard... and follow these instructions: Configure company (site) and resource (user) mapping.
+IMPORTANT  We recommend that only one Datto RMM account be synchronized to an Autotask database. Connecting an additional Datto RMM account to the same Autotask database will remove the original link, and the existing integration will no longer function.
+
+OpenDisable the Autotask integration
+You can disable the integration temporarily by setting the integration status to OFF under General Settings.
+
+You can also disable individual settings by setting their status to OFF (Single Sign-On, Ticket Integration, Device Sync) or by removing the alert rules you set up.
+
+Should you decide to turn off the integration altogether and remove all settings and links between Datto RMM and Autotask, you will need to remove the Autotask component from your downloaded components. For further information on how to remove a component, refer to Managing components.
+
+OpenCheck synchronization issues (sync exceptions)
+Select the Sync Exceptions radio button in the upper-right corner of the integration page to see a list of synchronization issues that have occurred in the integration within the past seven days. The error message and its details can help you troubleshoot issues more efficiently.
+
+The page will display the following information:
+
+
+Field	Description
+Actions	 Refreshes the current view.
+Show entries	Allows you to show 10 / 25 / 50 / 100 entries per page.
+Error	Error message returned by the API.
+Resolution	Root of the problem. Click Show message details to see further details. Examples of the most common issues include:
+• Invalid sync account credentials
+• Inactive Autotask contract
+• Non-existent or invalid Autotask product
+• Site not mapped to Autotask
+• Non-existent Autotask queue
+• Non-existent or invalid Autotask account
+• Invalid Autotask resource / role combination
+• Autotask configuration item not associated with Autotask account
+• Non-existent Autotask UDF
+• And more
+Started	Date and time when the issue first occurred.
+Last	Date and time when the issue last occurred.
+Count	Number of instances of the error.
+Previous / Next	Click Previous / Next to see the previous or next page of results.
+NOTE  You can sort the data by clicking on any of the column headers.
+
+Autotask setup
+After the initial setup of the integration within Datto RMM, additional settings must be configured within Autotask.
+
+OpenConfigure resource permissions
+After you have configured the integration in Datto RMM , permissions need to be granted within Autotask to allow your resources to access the additional features from within Autotask.
+
+Refer to this topic in the Autotask Online Help: Resource Permissions for the Datto RMM Integration.
+
+OpenConfigure SSO
+After you have enabled SSO in Datto RMM and configured resource permissions in Autotask, you will be able to link your Autotask user profile and your Datto RMM user account.
+
+Refer to this topic in the Autotask Online Help: Linking or unlinking your Autotask and RMM user profiles.
+
+Additional features in Autotask
+OpenAutotask alert ticket information and information specific to Datto RMM
+If a monitor is configured to create a ticket when an alert is triggered for a Datto RMM device, and the device had already been mapped to an Autotask configuration item, Autotask will attempt to pull the following information from the configuration item:
+
+Contact
+Contract
+Service/Bundle
+Service Level Agreement (SLA)
+Once the Autotask alert ticket has been created, the following information specific to Datto RMM information will be available:
+
+Section	Description
+Ticket Category
+Ticket Type
+Ticket Title
+View Datto RMM Alert link
+The ticket is automatically assigned the AEM Alert ticket category and the Alert ticket type.
+The Ticket Title will be constructed as follows:
+[Monitor Alert] ([Monitor Trigger]) for [Hostname]
+Click View Datto RMM Alert to open the alert in Datto RMM.
+Description
+	The Description will be constructed as follows:
+This alert ticket was generated from AEM alert #[Alert Number] for the trigger "[Monitor Alert] ([Monitor Trigger])" within the policy "[Policy]". We last saw this [Model] ([Manufacturer]) device online at [Last Updated] UTC. The last known user was "[Last User]".
+NOTE  The Datto RMM date/time format is used in the Ticket Description.
+
+Activity tab
+	When an alert ticket is opened in Autotask, the following notes will be added to it by default:
+• Device Snapshot: Outlines metrics such as CPU Usage, Disk Space Usage, Memory Usage, Missing Patches.
+• Open Alerts: Shows other open alerts for the same device and for the same site.
+• Alert History: Displays the device's alert history in the last 24 hours/7 days/30 days.
+• Diagnostics: Displays diagnostic information about the device. This note is only added to the alert ticket if diagnostic details are available in the alert. Refer to View and act on alert information.
+Datto RMM Device Insight
+	The Datto RMM Device Insight displays a variety of details about the device. It also allows you to use Datto RMM tools directly from within the Autotask alert ticket. Refer to Datto RMM and BCDR Device insights and Using Datto RMM and BCDR tools from Autotask in the Autotask Online Help.
+Configuration Item Insight
+	The Configuration Item Insight displays a variety of details about the configuration item in Autotask. Refer to Ticket insights in the Autotask Online Help.
+For more information, click the question mark icon in the upper-right corner of the Autotask page. You will automatically be directed to the appropriate topic in the Autotask Online Help.
+
+OpenAutotask alert ticket completion and automatic Datto RMM alert closure
+If your Autotask alert ticket gets completed via a workflow rule, you can use the same workflow rule to trigger an extension callout to resolve your original Datto RMM alert (and all related alerts as well). Or, if the Autotask alert ticket is not completed via a workflow rule, you can create a workflow rule to trigger an extension callout when an Autotask alert ticket is set to complete.
+
+Extension callouts provide data for automatic (round trip) ticket closure for Datto RMM integrations. One of the actions a Service Desk workflow rule can perform in Autotask is to trigger an extension callout. The association of workflow rules with extension callouts allows you to trigger extension callouts when needed, and only when needed.
+
+To have a complete understanding of workflow rules and extension callouts, we strongly recommend that you get familiar with the following topics in the Autotask Online Help:
+
+Extension Callout (Tickets)
+Adding, editing, and copying workflow rules
+IMPORTANT  Automatic Datto RMM alert closure will not occur unless, at the time the Autotask alert ticket is completed, an extension callout has been set up and has been associated with either the workflow rule that closes the ticket or a separate workflow rule that fires when an Autotask alert ticket is completed.
+
+OpenStep 1: Configure the extension callout
+Log in to Autotask.
+Navigate to Autotask menu > Admin > Extensions & Integrations > Other Extensions & Tools > Extension Callout (Tickets).
+Click New Extension Callout.
+Enter a Name for the extension callout.
+Enter your Datto RMM platform URL in this form: <your-csm-url>/csm/autotask/resolveAlert
+EXAMPLE  For example, if you are on the Merlot platform, the URL should look like this: https://merlot.centrastage.net/csm/autotask/resolveAlert
+
+Set the HTTP Transport Method to POST.
+Leave all of the other fields at their default selection. Ensure the Active check box is selected.
+
+
+Click Save & Close.
+OpenStep 2: Associate the extension callout with a workflow rule
+Make sure you have an Autotask Service Desk workflow rule that is set up to close your Autotask alert ticket, or a workflow rule that is set up to fire when the Autotask alert ticket is completed. You can create a new rule or edit an existing one.
+EXAMPLE  In this example, the workflow rule is set up to fire when the status of a ticket that was created from a Datto RMM alert changes to Complete.
+
+
+NOTE  Only Autotask alert tickets with a status of Complete will be resolved by Datto RMM. If it has any other status when the workflow rule fires, it will be ignored by Datto RMM, and the alert will not be resolved.
+
+In the Actions area of the workflow rule, select the correct extension callout from the Then Execute Extension Callout list.
+
+Click Save & Close.
+ 
+
+	Need troubleshooting help? Open the Kaseya Helpdesk.
+	Want to talk about it? Head on over to the Datto Community!
+	Have an idea for a new feature? Want to learn about upcoming enhancements? Visit the ideas forum!
+	Provide feedback for the Documentation team.
+Was this article helpful?
+
+Yes No
+OpenSecurity and navigation
+SECURITY  Requires Administer LiveLinks permission, assigned from the Security Policies tab in LiveLinks Designer in Autotask
+
+NAVIGATION  Autotask menu > Admin > Automation > AutoForms & LiveLinks > LiveLinks Designer or, for non-Administrators, Home > View > LiveLinks Designer
+
+About LiveLinks
+LiveLinks are intelligent links from Autotask to external applications or websites, or customized links within Autotask. LiveLinks can pass Autotask information to a target application or website.
+
+To help streamline your Datto RMM workflow, you can create LiveLinks in Autotask to allow users to connect to a Datto RMM device directly from your Autotask configuration items or tickets.
+
+NOTE  If your Datto RMM account is integrated with Autotask, you have access to a number of endpoint management features right from Autotask. For more information, refer to Additional features in Autotask.
+
+How to...
+OpenSet up LiveLinks
+Navigate to LiveLinks Designer using any of the paths indicated above.
+NOTE  Ensure that you have Administer LiveLinks permission. This can be assigned from the Security Policies tab in LiveLinks Designer.
+
+In the LiveLinks tab, you will see a list of links that are already in your Autotask account. Click Explore the AXN LiveLinks Catalog.
+
+Locate the LiveLink called AEM Remote Takeover from Configuration Item or AEM Remote Takeover from Ticket. You can also use the search function.
+Right-click on any of the LiveLinks and click Install LiveLink.
+
+Read the terms and conditions. If you agree, select the check box I have read and accept the Terms and Conditions.
+Click Install.
+Once the installation is complete, click OK in the confirmation window.
+You will now be directed to your list of installed LiveLinks. Locate the newly installed LiveLink, right-click on it, and click Edit LiveLink.
+In the Base URL box, change Zinfandel to the platform your account resides on. For example, if your account is on the Merlot platform, change https://zinfandel.centrastage.net/csm/device/startConnection/ to https://merlot.centrastage.net/csm/device/startConnection/. For more information about platforms, refer to Datto RMM platforms.
+Make sure to activate the LiveLink by selecting the Active check box at the top of the page.
+
+Click Save & Publish.
+Select which security levels, departments, and resources you would like to publish the LiveLink to by clicking on each of the following tabs: Security Levels, Departments, Resources.
+
+Click Save & Close. The LiveLink will now be accessible from your tickets and/or configuration items, respectively.
+The LiveLink will allow you to initiate a connection from an Autotask ticket or configuration item that references a Datto RMM monitored device.
+INTEGRATIONS > Datto Continuity Integration
+
+
+
+
+
+Datto Continuity Integration
+OpenSecurity and navigation
+SECURITY  Refer to SETUP > Integrations in Security Level Details - Permissions
+
+NAVIGATION  New UI > Setup > Integrations > Datto Continuity
+
+About the integration
+
+The Datto Continuity Integration allows you to join Datto Continuity products with Datto RMM, offering many benefits to make protecting clients against downtime and ransomware attacks more integrated and efficient.
+
+IMPORTANT  This integration does not apply to Datto Cloud Continuity devices.
+
+NOTE  The Deploy Datto Virtual SIRIS to Hyper-V Server [WIN] component is also available from the ComStore. This component allows you to prepare a Hyper-V-capable server for Datto vSIRIS deployment, download the disk image and prepare the VM for configuration, and prepare the Hyper-V host to accept a Hypervisor connection from the vSIRIS via Datto RMM regardless of whether you also have the Datto Continuity Integration configured.
+
+Highlights include the following:
+
+Complete visibility of protected servers and their backup statuses in Datto RMM. View backup information alongside other key device information such as patch status and monitoring alerts. Devices display backup status, offsite sync status, and screenshot verification information. Quickly see if there are any unprotected volumes on a device.
+Seamless technician workflows, which makes it efficient to configure, back up, and restore servers within Datto RMM. Resolve client issues faster by recovering data or by initiating a cloud restore directly from the Device Summary page. Refer to Datto Continuity. Create a backup of a server before making a big change, which provides an extra level of protection.
+The ability to view and configure Datto Continuity devices from a single portal. No need to log in to multiple user interfaces to see all devices in your client’s network; Datto Continuity devices can be managed the same way as any other device in Datto RMM as both systems use Datto single sign-on (SSO).
+The ability to deploy Datto Backup Windows agents with the Datto RMM deployment component. All prerequisite checks are automatically executed, and the agent can be deployed at a scheduled time for several devices at once.
+Complete understanding of device relationships by way of automated links between devices. Instantly see if a server is protected by a Datto Continuity device and whether it is connected to a Datto Access Point, Switch, or Managed Power device.
+The ability to run reports that contain information about Datto Continuity devices. Refer to Reports in the legacy UI and Reports - New UI in the New UI.
+The capability to integrate with a PSA. Datto Continuity devices will automatically be synced to a PSA system, making it easier to keep a fully updated Configuration Management Database (CMBD) and to automate the billing process.
+NOTE   The Datto Continuity Integration is free of charge, and Datto Continuity devices do not count toward your Managed device limit.
+
+Requirements
+An active Datto RMM subscription
+At least one Datto Continuity device
+Access to the Datto Partner Portal to obtain API keys
+The legacy Datto BCDR Integration is no longer available.
+NOTE  The Datto Continuity Integration is only available in the New UI.
+
+Supported Datto Continuity devices
+All ALTO, SIRIS, and vSIRIS devices are supported.
+
+How to...
+OpenObtain REST API keys from the Datto Partner Portal
+In the Datto Partner Portal, hover over Admin and click Integrations.
+In the API Keys > API Key Management section, click the More icon next to the API key you wish to obtain and click View keys.
+
+Alternatively, you can click the Create API Key button to create a new API key. Enter an API key name, leave the rest of the fields blank, and click Create.
+
+Click Copy to copy the Public Key and the Private Key.
+
+OpenEnable the Datto Continuity Integration
+Navigate to Setup > Integrations > Datto Continuity.
+In the API Details card, click Turn On.
+
+In the Public Key and Secret Key fields, enter the REST API credentials. Refer to Obtain REST API keys from the Datto Partner Portal.
+NOTE  Both keys are required in order to complete the integration setup. If the Datto Networking Integration is active, you are not required to enter the API credentials again. Refer to Datto Networking Integration - New UI.
+
+NOTE  If you turn on the integration and enter a different set of API keys, any existing Datto Continuity devices will be deleted, and Datto Continuity devices associated with the new account will become available. Device synchronization will happen within ten minutes.
+
+Click Save and Check Now.
+
+Observe that a message will be displayed if the API credentials are invalid. Ensure that the API keys are entered correctly. A confirmation message will be displayed if the connection is successful.
+OpenMap Datto Continuity devices to Datto RMM sites
+Once the integration is enabled, you can view a list of Datto Continuity devices associated with your account.
+
+
+The number of results displayed can be specified by selecting the desired number from the pagination control. This selection will persist the next time the page is accessed.
+
+NOTE  This drop-down menu only appears for lists of greater than ten devices.
+
+Various table actions are available.
+
+The action buttons are grayed out if no row is selected or if the action is not applicable to the selected rows. The check boxes allow you to select one or more rows. Select all rows shown on the page by selecting the check box in the table header. To access all action buttons, click the Row Actions icon. The table below lists all available action buttons.
+
+Action Button	Description
+Map	Map the selected Datto Continuity device to a Datto RMM site. This will create the Datto Continuity device as a device within Datto RMM. Multiple Datto Continuity devices can be mapped to a single site. When new devices are added in the Datto Partner Portal, they will automatically become available to map to sites within Datto RMM. Datto Continuity devices that are mapped to a Datto RMM site will be kept in sync automatically; if any of the following attributes are updated in the Datto Partner Portal, the changes will be reflected in Datto RMM:
+• Hostname
+• IP address
+• Online/offline status
+• Protected device is added to the Datto Continuity device
+• Protected device is removed from the Datto Continuity device
+Unmap	Unmap the selected Datto Continuity device from the Datto RMM site.
+Uncheck All	Clears all selected rows. The number of selected rows is indicated next to the Row Actions icon.
+To map a device to a Datto RMM site, perform the following steps:
+
+Select the device you wish to map and click Map.
+Enter the site you wish to map the device to. The search results are narrowed as you type.
+Click Map.
+Observe that a confirmation message will be displayed if the mapping action was successful, and that the device's status is now Mapped.
+To unmap a device from a Datto RMM site, perform the following steps:
+
+Select the device you wish to unmap and click Unmap.
+Click Unmap.
+Observe that a confirmation message will be displayed if the unmapping action was successful, and that the device's status is now Unmapped.
+OpenMove or delete Datto Continuity devices
+Datto Networking or Datto Continuity devices cannot be moved between Datto RMM sites or deleted from within Datto RMM. If any Datto Networking or Datto Continuity devices are selected to be moved to another site, these devices will be excluded from the move, and a message will be displayed prompting you to update the mapping. Refer to Map RMM sites to Datto Networking networks or Map Datto Continuity devices to Datto RMM sites. If any Datto Networking or Datto Continuity devices are selected to be deleted, you will be notified in a dialog box that these devices cannot be deleted. The selected Datto RMM devices will then be either moved to the new site or deleted.
+
+If a Datto Continuity device is removed or replaced within the Datto Partner Portal, you have the ability to unmap the device on the Datto RMM integration page.
+
+If a site is deleted from Datto RMM, any associated Datto Continuity devices will be unmapped from that site. If an account is deleted from Datto RMM, all associated sites and devices will be deleted.
+
+OpenMonitor devices
+Monitors allow you to keep track of a variety of attributes for devices and can raise alerts when devices are not operating within specified parameters. For information on how to create monitors, refer to Manage monitors in the legacy UI and Monitors - New UI in the New UI. Alerts generated by monitors will appear in the legacy UI as well as the New UI in alerts tables and widgets.
+
+OpenMonitor protected devices
+Protected devices can be monitored in the same manner as any Managed, Agent-based Datto RMM device. All monitors that function on Windows, macOS, and Linux devices will function on protected devices. Refer to Monitors and policies. In addition, the Datto Continuity monitor is available with the Datto Continuity Integration, which allows you to monitor the endpoints protected by your Datto Continuity devices. Refer to Datto Continuity Monitor in the legacy UI and Datto Continuity monitor in the New UI.
+
+OpenMonitor Datto Continuity devices
+Datto Continuity devices can be monitored using the Online Status Monitor. Refer to Online Status Monitor in the legacy UI and Online Status monitor in the New UI.
+
+OpenTarget Datto Continuity devices with policies
+To target Datto Continuity devices in policies, select All Datto Continuity Devices in the Default Device Filter drop-down list when creating a policy. Refer to Managing policies in the legacy UI and Policies - New UI in the New UI. Also refer to Filters in the legacy UI and Device Filters - New UI in the New UI.
+
+NOTE  Creating a policy must be done in the legacy UI.
+
+OpenDisable the Datto Continuity Integration
+You can disable the integration temporarily by clicking Turn Off within the API Details card. All of the integration and authentication settings will be retained until the next time the integration is enabled.
+
+INTEGRATIONS > Datto File Protection Integration
+
+
+
+
+
+Datto File Protection Integration
+OpenSecurity and navigation
+SECURITY  For components, refer to ComStore > ComStore in Permissions.
+
+SECURITY  For Software Management, refer to Global > Manage, Global > Policies, Sites > Manage, and Sites > Policies in Permissions.
+
+SECURITY  For monitors, refer to Sites > Monitor in Permissions.
+
+SECURITY  For policies, refer to Global > Policies and Sites > Policies in Permissions.
+
+SECURITY  For UDF configuration, refer to Setup > Account Settings/Global Settings in Permissions.
+
+NAVIGATION  Various navigation paths. For details, see below.
+
+About Datto File Protection
+Datto File Protection is Datto's cloud-based file backup service. It consists of the following components:
+
+File Protection Desktop: File Protection Desktop is installed on a computer and is responsible for securely transmitting data between the device on which it is installed and the File Protection service. File Protection Desktop can be installed silently on a user's machine via an RMM tool, such as Datto RMM.
+File Protection Server: File Protection Server is designed specifically to run on server operating systems to back up the files stored on local, attached, or network drives. It always runs in service mode, which ensures that it's constantly backing up even on unattended devices.
+File Protection Online: A web interface that provides end users with access to device-related functions in the File Protection service, like restoring devices from a backup.
+File Protection Manager: A web interface that provides access to all administrative and provisioning functions for partners.
+For more detailed information about Datto File Protection, visit the Datto File Protection Manager Help.
+
+About the Datto File Protection Integration
+
+The integration offers the following major benefits:
+
+Seamless, silent deployment and removal of Datto File Protection using Datto RMM. The Datto File Protection team key allows you to install or uninstall File Protection Desktop without end user interaction. Refer to Install File Protection Desktop.
+Alerting on key problems of Datto File Protection, like devices not running backups for days. Tickets can also be created from the alerts in Autotask if the ticket integration is enabled. Refer to Configure ticket integration.
+Visibility on Datto File Protection status in Datto RMM. Any managed device will display the Datto File Protection status, backup size, and last backup day. You can use this information in reports or filters. Moreover, if you use the Autotask Integration, and the user-defined field (UDF) synchronization is enabled, the Datto File Protection information will be synced to your Autotask configuration items. Refer to Configure device synchronization.
+Prerequisite
+You need to have a team key to be able to associate the devices with the correct team. Refer to Install File Protection Desktop.
+
+How to...
+OpenInstall File Protection Desktop
+Before deploying File Protection Desktop, a team key must be created in the Datto File Protection Manager. The team key is used during the installation of File Protection Desktop to associate the device with the correct team, and it also assigns a set of default folders for the backup. For information on how to create or find the Datto File Protection team key, refer to this topic in the Datto File Protection Manager Help: Deployment Configuration.
+
+You can install File Protection Desktop via Datto RMM by using one of the methods described below.
+
+OpenInstalling from the ComStore (ad-hoc deployment)
+Navigate to the ComStore tab in the legacy UI or to Automation > ComStore in the New UI.
+Search for Datto File Protection and add the desired Windows or macOS deployment component to your Component Library. Refer to Download a component in the legacy UI and Download a component in the New UI.
+If you are using the New UI, go to the next step.
+If you are using the legacy UI, mark the downloaded component as a favorite to be able to run it as a quick job. Refer to Make a component available for quick jobs.
+Navigate to a device or a list of devices that you wish to install File Protection Desktop on.
+Create either a quick job or a scheduled job for the selected devices and use the Datto File Protection component in the job. Refer to Quick jobs and Job scheduler in the legacy UI and Quick jobs - New UI and Scheduled jobs - New UI in the New UI.
+Ensure that the Uninstall variable is set to False (legacy UI) or left unselected (New UI) when configuring the component.
+
+NOTE  Setting the Uninstall variable to True (legacy UI) or selecting it (New UI) would trigger the File Protection Desktop uninstallation process. Uninstalling File Protection Desktop does not require a team key.
+
+In the TeamKey field, enter the team key obtained from the Datto File Protection Manager.
+NOTE  Alternatively, you can leave this field blank if you have defined a global or site-level variable called usrDFPTeamKeySITE in your Datto RMM account. The variable will be used in the back end when running the job. If you have defined both a global and a site-level variable, the site-level variable will take priority.For information on variables, refer to the following topics:
+• Variables and Update Site Variables in Account Settings, and Variables in Site Settings (legacy UI)
+• Variables and Import Site Variables in Global Settings, and Variables in Creating a site - New UI (New UI)
+
+NOTE  If you leave this field blank, and no global or site-level team key variable is defined, the end user will be prompted to enter a team key when they launch the application to finish the installation process.
+
+Finish creating the job. Once the job has run, File Protection Desktop will be installed on the selected devices.
+The installation may take a few minutes. Once it's completed, you can check the output of the installation. Refer to Stdout Stderr in the legacy UI and StdOut/StdErr in the New UI.
+NOTE  The installation is completely silent; however, users are required to log off and log back in to their device or reboot it for Datto File Protection to start automatically. Users can start Datto File Protection manually as well.
+
+OpenInstalling via Software Management (policy-driven deployment)
+Ensure you have defined your team key as a global or site-level variable called usrDFPTeamKeySITE.
+NOTE  For information on variables, refer to the following topics:
+• Variables and Update Site Variables in Account Settings, and Variables in Site Settings (legacy UI)
+• Variables and Import Site Variables in Global Settings, and Variables in Creating a site - New UI (New UI)
+
+Configure a Software Management policy for Datto File Protection. Refer to Create a Software Management policy in the legacy UI and Software Management policy in the New UI.
+During the installation process, the global or site-level team key variable will automatically be applied, and the Software Management policy will install File Protection Desktop on applicable devices.
+NOTE  If you have defined both a global and a site-level variable, the site-level variable will take priority.
+
+OpenMonitor your devices' File Protection status
+Navigate to the ComStore tab in the legacy UI or to Automation > ComStore in the New UI.
+Search for Datto File Protection and add the desired Windows or macOS monitoring component to your Component Library. Refer to Download a component in the legacy UI and Download a component in the New UI.
+To monitor an individual device's Datto File Protection status, create a Component monitor. Refer to the Component Monitor section in Create a monitor in the legacy UI and the Component monitor section in Creating a monitor in the New UI.
+To monitor multiple devices' Datto File Protection status, create a Monitoring policy and add a Component monitor to it. Refer to Create a Monitoring policy in the legacy UI and Monitoring policy in the New UI.
+In the monitor details, select the downloaded Datto File Protection monitoring component as the Component monitor and configure the following variables:
+Field	Description
+usrShowBackupWarnings	Set the variable to true (legacy UI) or select the check box (New UI) to send Datto RMM alerts in response to active backup warnings.
+usrMonitorLastBackupDate	Set the variable to true (legacy UI) or select the check box (New UI) to report if the date of the last successful backup exceeds the date given in usrDaysToCheck.
+usrShowServiceStatus	Set the variable to true (legacy UI) or select the check box (New UI) to report on File Protection service offline status.
+usrDaysToCheck	Specify how many days without a backup are allowed before the monitor raises an alert.
+NOTE  This variable is used alongside the usrMonitorLastBackupDate variable. Ignore usrDaysToCheck if usrMonitorLastBackupDate is disabled.
+
+usrShowInstallStatus	Set the variable to true (legacy UI) or select the check box (New UI) to report on the File Protection Desktop installation status.
+usrUDF2	Shows the Datto File Protection version and ID, which will allow you to quickly find the device in the Datto File Protection Manager.
+By default, Custom2 is used. Enter one of Custom1, Custom2, ... Custom30, according to the user-defined field you wish to populate.
+
+EXAMPLE  Custom1 will populate User-Defined Field 1, Custom2 will populate User-Defined Field 2, and so on.
+
+usrUDF1	Shows the service status, size of backup, and when the last backup was completed.
+By default, Custom1 is used. Enter one of Custom1, Custom2, ... Custom30, according to the user-defined field you wish to populate.
+
+EXAMPLE  Custom1 will populate User-Defined Field 1, Custom2 will populate User-Defined Field 2, and so on.
+
+Specify how often the Component monitor should run.
+NOTE  We recommend that you set this interval to at least one hour. Running the Component monitor more often than this should not be necessary.
+
+Configure the rest of the monitor details and save the changes.
+The targeted devices will now be monitored. An alert will be raised according to the monitor configuration, and the user-defined field information will be displayed on the Device Summary page. Refer to User-Defined Fields in the legacy UI and UDFs in the New UI.
+OpenRename the UDF names used by the integration
+By default, the integration uses user-defined fields 1 and 2 to show a device's Datto File Protection status on the Device Summary page in Datto RMM. We recommend that you rename these user-defined field names to reflect what information is captured through the integration. To learn how to change the field names, refer to the User-Defined Fields section in Account Settings in the legacy UI and the User-Defined Fields section in Global Settings in the New UI.
+
+EXAMPLE  For example, you can rename the Account Label (legacy UI) or Global Label (New UI) of User-defined field 1 to DFP Status and that of User-defined field 2 to DFP Version | ID. This would provide similar results on the Device Summary page as shown in the screenshot below:
+
+INTEGRATIONS > Datto Networking Integration
+
+
+
+
+
+Datto Networking Integration overview
+OpenSecurity and navigation
+SECURITY  Administrator
+
+NAVIGATION  Setup > Datto Networking
+
+NAVIGATION  New UI > Setup > Integrations > Datto Networking
+
+About the integration
+The Datto Networking Integration allows you to join Datto RMM sites with Datto Networking networks, offering many benefits to make the support process more integrated and efficient. Some highlights include the following:
+
+Once the configuration is complete and a Datto RMM site is mapped to a Datto Networking network, all supported Datto Networking devices (Datto Access Points, Datto Switches, and Datto Managed Power devices) are kept in sync automatically with your Datto RMM site as long as that mapping is active. Refer to Datto Network Manager: Getting Started.
+Support technicians will not need to switch between different user interfaces; Datto Networking devices can be managed the same way as any other device in Datto RMM.
+Support technicians can resolve client networking issues faster by remotely resetting Datto Networking devices.
+Datto Networking devices will automatically be synced to PSA systems, which will make it easier to automate the billing process.
+NOTE  The Datto Networking Integration is free of charge, and Datto Networking devices do not count toward your Managed device limit.
+
+NOTE  Monitoring is not currently supported in the Datto Networking Integration.
+
+Requirements
+To configure the integration, you will need the following:
+
+The Datto Networking component downloaded from the ComStore
+NOTE  You must download the Datto Networking component if you are configuring the integration in the legacy UI. In the New UI, the Datto Networking Integration is automatically available for configuration in the web interface and does not require you to download the component.
+
+A Network Manager account with administrator access and REST API credentials
+How to...
+Instructions for integrating Datto Networking with Datto RMM are available for both the legacy UI and the New UI. Select the relevant instructions below.
+
+Configure in the legacy UI
+Refer to Datto Networking Integration.
+
+Configure in the New UI
+Refer to Datto Networking Integration - New UI.
+
+INTEGRATIONS > Datto Workplace Integration
+
+
+
+
+
+Datto Workplace Integration
+OpenSecurity and navigation
+SECURITY  For components, refer to ComStore > ComStore in Permissions.
+
+SECURITY  For Software Management, refer to Global > Manage, Global > Policies, Sites > Manage, and Sites > Policies in Permissions.
+
+SECURITY  For monitors, refer to Sites > Monitor in Permissions.
+
+SECURITY  For policies, refer to Global > Policies and Sites > Policies in Permissions.
+
+SECURITY  For UDF configuration, refer to Setup > Account Settings/Global Settings in Permissions.
+
+NAVIGATION  Various navigation paths. For details, see below.
+
+About Datto Workplace
+Datto Workplace is Datto's online file sharing and collaboration service. Datto Workplace is an all-in-one solution for synchronizing files between devices, project collaboration, and remote file access. It consists of the following components:
+
+Workplace Online: A web interface that provides access to all files stored on the Workplace service, as well as all the administrative functions for Workplace.
+Workplace Desktop: Workplace Desktop is installed on your computer and runs silently in the background ensuring that the latest versions of your files and the files shared with you are available to you locally. The Workplace app is also responsible for making backups of folders you have selected.
+Workplace Server: Workplace Server is a component of the Workplace service. It makes all your files accessible through Workplace while retaining local, centralized data storage so that your data is also available via your local area network (LAN). The Workplace service keeps all data on your LAN accessible internally and in sync with Workplace.
+Workplace Mobile: Available for iOS (iPhone/iPad) and Android, Workplace Mobile provides access to your files stored in the Workplace cloud and allows document editing within Workplace Mobile.
+For more detailed information about Datto Workplace, visit the Datto Workplace Manager Help.
+
+About the Datto Workplace Integration
+
+The integration offers the following major benefits:
+
+Seamless, silent deployment and removal of Datto Workplace using Datto RMM. The Datto Workplace team key allows you to install or uninstall Workplace Desktop without end user interaction. Refer to Install Workplace Desktop.
+Alerting on key problems of Workplace, like devices failing to sync. Tickets can also be created from the alerts in Autotask if the ticket integration is enabled. Refer to Configure ticket integration.
+Visibility on Datto Workplace status in Datto RMM. Any managed device will display the Datto Workplace status, as well as related sync information. You can use this information in reports or filters. Moreover, if you use the Autotask Integration, and the user-defined field (UDF) synchronization is enabled, the Datto Workplace information will be synced to your Autotask configuration items. Refer to Configure device synchronization.
+Prerequisite
+You need to have a team key to be able to associate the devices with the correct team. Refer to Install Workplace Desktop.
+
+How to...
+OpenInstall Workplace Desktop
+In order to deploy Workplace Desktop to the users on your team, a team key must be created in Workplace Online. The team key is used by the system to configure Workplace Desktop on the users' desktop or laptop devices. For information on how to create or find the Datto Workplace team key, refer to this topic in the Datto Workplace Manager Help: Configure Deployment.
+
+You can install Workplace Desktop via Datto RMM by using one of the methods described below.
+
+OpenInstalling from the ComStore (ad-hoc deployment)
+Navigate to the ComStore tab in the legacy UI or to Automation > ComStore in the New UI.
+Search for Datto Workplace and add the desired Windows or macOS deployment component (either the long-term support Classic version or the latest release) to your Component Library. Refer to Download a component in the legacy UI and Download a component in the New UI.
+NOTE  The latest release of Datto Workplace will update itself automatically.
+
+If you are using the New UI, go to the next step.
+If you are using the legacy UI, mark the downloaded component as a favorite to be able to run it as a quick job. Refer to Make a component available for quick jobs.
+Navigate to a device or a list of devices that you wish to install Workplace Desktop on.
+Create either a quick job or a scheduled job for the selected devices and use the Datto Workplace component in the job. Refer to Quick jobs and Job scheduler in the legacy UI and Quick jobs - New UI and Scheduled jobs - New UI in the New UI.
+Ensure that the Uninstall variable is set to False (legacy UI) or left unselected (New UI) when configuring the component.
+
+NOTE  Setting the Uninstall variable to True (legacy UI) or selecting it (New UI) would trigger the Workplace Desktop uninstallation process. Uninstalling Workplace Desktop does not require a team key.
+
+In the usrDWPTeamKey field, enter the team key obtained from Workplace Online.
+NOTE  Alternatively, you can leave this field blank if you have defined a global or site-level variable called usrDWPTeamKeySITE in your Datto RMM account. The variable will be used in the back end when running the job. If you have defined both a global and a site-level variable, the site-level variable will take priority.For information on variables, refer to the following topics:
+• Variables and Update Site Variables in Account Settings, and Variables in Site Settings (legacy UI)
+• Variables and Import Site Variables in Global Settings, and Variables in Creating a site - New UI (New UI)
+
+NOTE  If you leave this field blank, and no global or site-level team key variable is defined, the end user will be prompted to enter their user credentials when they launch the application to finish the installation process.
+
+Finish creating the job. Once the job has run, Workplace Desktop will be installed on the selected devices.
+The installation may take a few minutes. Once it's completed, you can check the output of the installation. Refer to Stdout Stderr in the legacy UI and StdOut/StdErr in the New UI.
+NOTE  The installation is silent. However, a Datto Workplace administrator needs to approve the device either manually or automatically. Once the device has been approved, the end user will get an email requiring them to approve the installation and accept an End User License Agreement (EULA). Once the EULA has been accepted, the deployment will be completed and projects will start to sync.
+
+OpenInstalling via Software Management (policy-driven deployment)
+Ensure you have defined your team key as a global or site-level variable called usrDWPTeamKeySITE.
+NOTE  For information on variables, refer to the following topics:
+• Variables and Update Site Variables in Account Settings, and Variables in Site Settings (legacy UI)
+• Variables and Import Site Variables in Global Settings, and Variables in Creating a site - New UI (New UI)
+
+Configure a Software Management policy for Datto Workplace. Refer to Create a Software Management policy in the legacy UI and Software Management policy in the New UI.
+NOTE  The Datto Workplace version installed for Software Management is the long-term support Classic release. To install the latest release of Datto Workplace, refer to Installing from the ComStore (ad-hoc deployment).
+
+During the installation process, the global or site-level team key variable will automatically be applied, and the Software Management policy will install Workplace Desktop on applicable devices.
+NOTE  If you have defined both a global and a site-level variable, the site-level variable will take priority.
+
+OpenMonitor your Windows devices' Workplace status
+To monitor the sync status and other information about devices with Workplace Desktop installed, you can create a Component monitor by utilizing the .xml file included in Workplace Desktop 7.0 and later versions. You can then apply the monitor at the device level or as part of a Monitoring policy.
+
+For details on the XML header and body fields, refer to this topic in the Datto Workplace Manager Help: Integrate with Datto RMM.
+
+Navigate to the ComStore tab in the legacy UI or to Automation > ComStore in the New UI.
+Search for Datto Workplace and add the desired Windows monitoring component to your Component Library. Refer to Download a component in the legacy UI and Download a component in the New UI.
+To monitor an individual device's Datto Workplace status, create a Component monitor. Refer to the Component Monitor section in Create a monitor in the legacy UI and the Component monitor section in Creating a monitor in the New UI.
+To monitor multiple devices' Datto Workplace status, create a Monitoring policy and add a Component monitor to it. Refer to Create a Monitoring policy in the legacy UI and Monitoring policy in the New UI.
+In the monitor details, select the downloaded Datto Workplace monitoring component as the Component monitor. Configure the following variables based on which monitoring component you are using.
+Datto Workplace Desktop (Classic) Monitor
+
+Field	Description
+usrShowInstallStatus	Set the variable to true (legacy UI) or select the check box (New UI) to report on the Workplace Desktop installation status.
+usrDaysToCheck	Specify how many days without a backup are allowed before the monitor raises an alert.
+NOTE  This variable is used alongside the usrMonitorLastBackupDate variable. Ignore usrDaysToCheck if usrMonitorLastBackupDate is disabled.
+
+usrUDF2	Shows the Workplace Desktop version and ID, which will allow you to quickly find the device in the Datto Workplace Manager. It also displays the sync status.
+By default, Custom2 is used. Enter one of Custom1, Custom2, ... Custom30, according to the user-defined field you wish to populate.
+
+EXAMPLE  Custom1 will populate User-Defined Field 1, Custom2 will populate User-Defined Field 2, and so on.
+
+usrUDF1	Shows the service status, size of backup, and when the last backup was completed.
+By default, Custom1 is used. Enter one of Custom1, Custom2, ... Custom30, according to the user-defined field you wish to populate.
+
+EXAMPLE  Custom1 will populate User-Defined Field 1, Custom2 will populate User-Defined Field 2, and so on.
+
+usrShowServiceStatus	Set the variable to true (legacy UI) or select the check box (New UI) to report on Workplace service offline status.
+usrMonitorLastBackupDate	Set the variable to true (legacy UI) or select the check box (New UI) to report if the date of the last successful backup exceeds the date given in usrDaysToCheck.
+usrShowBackupWarnings	Set the variable to true (legacy UI) or select the check box (New UI) to report on warnings encountered during the backup process.
+ 
+
+Datto Workplace Monitor:
+
+Field	Description
+usrUDF	Shows the Datto Workplace version and ID, which will allow you to quickly find the device in the Datto Workplace Manager. It also displays the sync status, service status, size of backup, and when the last backup was completed.
+By default the number 1 is used. Enter a number from 1 to 30, according to the user-defined field you wish to populate.
+
+EXAMPLE  1 will populate User-Defined Field 1, 2 will populate User-Defined Field 2, and so on.
+
+usrDaysToCheck	Specify how many days without a backup are allowed before the monitor raises an alert. Enter 0 if you do not want to check this.
+Specify how often the Component monitor should run.
+NOTE  We recommend that you set this interval to at least one hour. Running the Component monitor more often than this should not be necessary.
+
+Configure the rest of the monitor details and save the changes.
+The targeted devices will now be monitored. An alert will be raised according to the monitor configuration, and the user-defined field information will be displayed on the Device Summary page. Refer to User-Defined Fields in the legacy UI and UDFs in the New UI.
+OpenRename the UDF names used by the integration
+By default, the integration uses user-defined fields 1 and 2 to show a device's Datto Workplace status on the Device Summary page in Datto RMM. We recommend that you rename these user-defined field names to reflect what information is captured through the integration. To learn how to change the field names, refer to the User-Defined Fields section in Account Settings in the legacy UI and the User-Defined Fields section in Global Settings in the New UI.
+
+EXAMPLE  For example, you can rename the Account Label (legacy UI) or Global Label (New UI) of User-defined field 1 to Workplace Status and that of User-defined field 2 to Workplace Version | ID. This would provide similar results on the Device Summary page as shown in the screenshot below:
+
+INTEGRATIONS > KaseyaOne Integration
+
+
+
+
+
+KaseyaOne Integration
+OpenSecurity and navigation
+SECURITY  Security Admin in Datto Partner Portal and Master User in KaseyaOne to enable Log In with IT Complete globally; and any user with Datto Partner Portal credentials to enable Log In with IT Complete for their individual account.
+
+About IT Complete and KaseyaOne
+KaseyaOne is the customer portal and central hub for all products that belong to the Kaseya IT Complete portfolio. Every Kaseya customer is provided with an account that offers the following benefits:
+
+Unified login and centralized access to Kaseya IT Complete modules. You can log in to IT Complete and then click the appropriate product or module tile. You can also navigate to your product-specific login page to sign in to IT Complete.
+Seamless navigation to other modules. Logging in with IT Complete will place an app launcher icon (waffle icon) in the upper-right corner of any page in KaseyaOne to access the My IT Complete menu. From there, you can seamlessly open all products you are subscribed to. The same icon will be displayed in the products that you connected with KaseyaOne.
+
+Consolidated access to Support. You can submit and monitor support tickets for all Kaseya modules from a single location.
+Unified view of subscriptions and billing. You can see your subscriptions, orders, and invoices, and you can access the billing portal.
+Cooper Intelligence Engine. Cooper provides insights that will allow you to get even more out of your Kaseya modules.
+NOTE  Using IT Complete unified login is optional. Product-specific credentials will continue to work, but if you log in to a product using your product-specific credentials, you will not be able to access the IT Complete features. The screenshot below shows that instead of the app launcher icon a K icon is displayed in the upper-right corner of the New UI in Datto RMM when a user is logged in via the Datto Partner Portal. You can click the icon to open https://www.kaseya.com.
+
+
+OpenEnabling Kaseya IT Complete
+Connecting your Datto Partner Portal account to your KaseyaOne account is a two-step process that needs to be completed in the Datto Partner Portal.
+
+Step 1: A Datto RMM user with Security Admin privileges in the Datto Partner Portal and Master user credentials in KaseyaOne needs to enable Log In with IT Complete for all users.
+Step 2: Each user needs to enable Log In with IT Complete for their own Datto Partner Portal account.
+To learn how to do this, refer to Datto Partner Portal: Log into Datto Partner Portal and KaseyaOne using IT Complete.
+
+OpenLogging in via Kaseya IT Complete
+BEFORE YOU BEGIN  Before attempting to log in to Datto RMM via IT Complete, you must complete the Datto RMM login process per the instructions outlined in your welcome email. If you attempt to log in using your IT Complete credentials before your Datto RMM user account is completely set up, you will receive an Invalid Username/Password error. Additionally, Log In with IT Complete must be enabled in the Datto Partner Portal. Refer to Enabling Kaseya IT Complete.
+
+To use your IT Complete credentials, follow these steps:
+
+Navigate to the Datto Partner Portal at the following URL: https://auth.datto.com/login.
+Alternatively, open your platform's direct login page. Refer to Current regions and platforms.
+Enter your email address and click Log In with IT Complete.
+
+On the KaseyaOne login page, enter your username, password, and company name associated with your KaseyaOne account, and click Log In.
+
+Enter your 2FA token and click Verify.
+
+NOTE  For further information, refer to Two-factor authentication.
+
+If you have more than one account associated with your email address, select the account you wish to access and click Continue.
+Once logged in, the URL in your browser will indicate which platform your account is hosted on.
+EXAMPLE  If your account is hosted on the platform called Merlot, the URL will look as follows: https://merlot.centrastage.net.
+
+Make sure to navigate to the New UI within 10 minutes after logging in with your IT Complete credentials so that you can access the KaseyaOne app launcher icon (waffle icon) in the upper-right corner of the New UI. From there, you can navigate to any other connected Kaseya products.
+
+
+OpenCooper Intelligence Engine
+Datto RMM is integrated with the Cooper Intelligence Engine. Cooper Insights let you know how to make your Datto RMM configuration more secure and ensure you are taking advantage of the latest features.
+
+
+The following insights are available:
+
+Users not using the New UI: Displays the number of users that have not set the New UI as their default UI. Refer to Show New UI by Default.
+Endpoints missing Patch Management policies: Informs you if over 50% of Windows devices are not targeted by at least one Patch Management policy. Refer to Patch Management - New UI.
+Inactive users: Displays the number of users that have not logged in for 30 days. Refer to Details in Users - New UI.
+Active policies with no target endpoints: Displays the number of active policies that do not target any device. Refer to Targets in Policies - New UI. This insight information is updated when policy targets are recalculated. Refer to Policy membership recalculation.
+Account not using IP address restriction: Informs you if IP address restriction is not configured in your Datto RMM account. Refer to IP Address Restriction in Global Settings.
+Components needing updates: Informs you if more than 10% of your components require an update. Refer to Component Library - New UI.
+Have you checked out the ComStore? If your Datto RMM account has been active for more than 30 days, this insight informs you if you have less than five components in your account. Refer to ComStore - New UI.
+Get the most out of Datto RMM with device filters: If your Datto RMM account has been active for more than 30 days, this insight informs you if you have less than 10 custom filters in your account. Refer to Device Filters - New UI.
+Click any of the insights for more information, and click the button in the insight to open the relevant Datto RMM Online Help article.
+
+INTEGRATIONS > IT Glue Integration
+
+
+
+
+
+IT Glue Integration
+OpenSecurity and navigation
+SECURITY  To enable the integration, refer to Setup > Integrations in Permissions. Users with any security level can access the IT Glue pane. Refer to IT Glue pane in Datto RMM.
+The security permissions configured for a user in IT Glue will apply in the Datto RMM interface.
+
+NAVIGATION  New UI > Setup > Integrations > IT Glue
+
+About the integration
+IT Glue™ is a SOC 2-compliant IT documentation platform that puts mission-critical information at your fingertips, improving team efficiency and consistency. The IT Glue Integration in Datto RMM provides technicians and operations managers seamless access to IT Glue data for a variety of tasks, including troubleshooting an incident or working on a project, directly in the Datto RMM interface.
+
+Refer to IT Glue in Third-party integrations to learn about the fundamentals of the integration. The built-in version of the integration described in this article offers additional features. Highlights include the following:
+
+When remote controlling a device, one-click access to IT Glue passwords allows for seamless connection and authentication.
+When troubleshooting issues on a device, one-click access to IT Glue documentation facilitates quick and efficient resolutions.
+The ability to open a device directly in Datto RMM from IT Glue saves time and clicks.
+The ability to insert IT Glue usernames and passwords into a Web Remote session. Refer to IT Glue Passwords in Web Remote.
+IT Glue pane in Datto RMM
+Once the integration is fully enabled, you can open a pane that contains IT Glue data for selected Datto RMM devices and sites on the Device Summary page and Single Alert View page.
+
+
+Refer to IT Glue in Device Summary - New UI and IT Glue in Single Alert View - New UI.
+
+The following tabs are available in the pane:
+
+Tab	Description
+Passwords
+	This tab lists passwords specific to the selected IT Glue configuration/Datto RMM device (Device Passwords) and specific to the IT Glue organization/Datto RMM site the device belongs to ([Site name] Passwords).
+For information about password creation and management in IT Glue, refer to Passwords in the IT Glue documentation.
+
+The following options are available:
+
+Click the name of a password to open the password details in IT Glue.
+In the Search Passwords bar, enter and search for the name of a specific password or set of passwords. The results apply to both device passwords and organization passwords and are narrowed as you type.
+Click the Copy Username icon to copy the email address or name associated with the password to your clipboard.
+Click the Copy Password icon to copy the password to your clipboard. For one-time passwords (OTPs) and vaulted passwords, refer to the subsequent special instructions.
+NOTE  Passwords are retrieved on demand rather than stored in Datto RMM.
+
+One-time passwords (OTPs)
+For information about OTPs, refer to Generating One-Time Passwords (OTP) in the IT Glue documentation.
+
+To copy IT Glue OTPs, complete the following steps:
+
+Click the One-time use password icon.
+
+An OTP will be automatically generated. Every 30 seconds, the OTP will expire, and a new one will be generated as long as the pane remains open.
+Click the Copy One-time Password icon next to the current OTP to copy it to your clipboard.
+
+Vaulted passwords
+BEFORE YOU BEGIN  Once Vault is enabled for an IT Glue account, individual users must be granted access by an administrator.
+
+For information about enabling Vault, creating passphrases, user access management, and vaulted passwords, refer to The Vault in the IT Glue documentation.
+
+To copy passwords stored in the IT Glue Vault, complete the following steps:
+
+Click the Copy Password from Vault icon.
+
+NOTE  The Copy Password from Vault icon is the same as the Copy Password icon. Hover over the key-shaped icon to see the text description and determine the password type.
+
+Upon selecting to copy a vaulted password, the Vaulted Password decryption dialog box opens.
+
+In the Passphrase field, enter your Vault passphrase.
+
+NOTE  Your Vault email address is automatically detected.
+
+
+Click Copy Password to Clipboard. If the IT Glue API determines the passphrase is correct, the password will be decrypted and copied to your clipboard.
+NOTE  This action will be logged in the Activity Log. Refer to Activity Log.
+
+Documentation
+
+This tab contains existing notes, documents, and related items from IT Glue. The following options are available:
+In the Search Documents bar, enter and search for IT Glue documents from any organization. The results are narrowed as you type. Click a document link to open the document in IT Glue.
+Configuration Notes: Notes saved in the Configuration Information section in IT Glue will appear here. If no notes for the configuration/device exist in IT Glue, this section is not displayed.
+Attachments: Any attachments uploaded to IT Glue for the configuration/device will be listed. Click an attachment link to download the file to the device you are using.
+Related Items: Any related items added to IT Glue for the configuration/device will be listed. Click a related item link to open the corresponding page in IT Glue.
+Organization
+
+This tab includes links to details about the selected IT Glue organization/Datto RMM site. Click a link to open the corresponding page for the organization in IT Glue.
+Notes saved in the Quick Notes section on the organization page in IT Glue will appear in a Quick Notes section in this tab, including any custom formatting. If no quick notes for the organization exist in IT Glue, this section is not displayed.
+
+NOTE  If the Store in vault check box is selected in the Quick Notes section in IT Glue, the Quick Notes section in this tab will show the following text: This Quick Note is encrypted in the Vault and cannot be shown.
+
+Action buttons
+The action buttons in each tab of the IT Glue pane open corresponding pages in IT Glue, as described in the following table:
+
+Button	Tab/Description	IT Glue page
+Go to IT Glue	If the selected device is not matched as part of the integration sync, each tab of the IT Glue pane will display Configuration not found. You can click the Go to IT Glue button to open IT Glue from Datto RMM and complete the matching. Refer to Sync Datto RMM data to IT Glue.
+	Home page (Dashboard section)
+Open Passwords	Passwords	Passwords page for the selected organization
+Open Documentation	Documentation	Documents page for the selected organization
+Open Organization	Organization	Home page for the selected organization
+Open Configuration	Each tab displays this button along with one of the three preceding tab-specific buttons.	Selected configuration page
+IT Glue for Web Remote
+Refer to IT Glue Passwords in Web Remote.
+
+How to...
+OpenEnable the integration in IT Glue
+BEFORE YOU BEGIN  This first step requires you to generate API credentials from Datto RMM. Refer to Activate the API.
+
+In IT Glue, complete the following steps for initial setup:
+
+Log in to your IT Glue account.
+Navigate to Account > Integrations.
+In the upper-right corner of the Active Integrations page, click the New button.
+Select the Datto RMM tile.
+
+Select the platform of your Datto RMM account.
+NOTE  In the API section on the Users page in Datto RMM, the API URL contains the name of the platform associated with your Datto RMM account.
+
+Enter the API values copied from Datto RMM. Refer to Datto RMM API.
+Click Connect.
+Choose if you want to match by Autotask companies or Datto RMM sites. Select the Autotask Companies option only if you are using Autotask as your PSA. Otherwise, select the Sites option.
+OpenAllow the IP address of your Datto RMM platform access to IT Glue
+If IP Access Control in your instance of IT Glue is restricted to certain IP addresses, you must add the outbound IP address for your Datto RMM platform to successfully activate the integration. Complete the following steps:
+
+Log in to your IT Glue account.
+Navigate to Account > Settings > IP Access Control.
+If Allow specific IP addresses is selected, add the outbound IP address for your Datto RMM platform. Refer to IP addresses per platform (Outbound).
+Click Save.
+OpenEnable the integration in Datto RMM
+BEFORE YOU BEGIN  You must enable the integration within your IT Glue account before completing the setup in Datto RMM. Refer to Enable the integration in IT Glue.
+
+IMPORTANT  The IT Glue Integration is authenticated on a per-user basis. The security permissions configured for a user in IT Glue will apply in the Datto RMM interface.
+
+To finish the integration setup, complete the following steps in Datto RMM:
+
+Navigate to Setup > Integrations > IT Glue.
+In the API Details card, click Turn On.
+In the Subdomain field, enter the full URL for your instance of IT Glue.
+NOTE  Within your IT Glue account, this URL is listed as the IT Glue Web Address in the Account tab.
+
+Select the data center region associated with your IT Glue account.
+Click Authenticate.
+
+Upon successful connection, the authentication button will be grayed out and will display Saved and authenticated. As long as the integration is not turned off, the Subdomain and Region values will be saved and the integration will remain connected per user account.
+
+NOTE  If the integration is turned on in Datto RMM but not yet successfully enabled, the IT Glue pane will display Configuration not found. Refer to IT Glue pane in Datto RMM. You can click the Go to IT Glue button to open IT Glue from Datto RMM and complete the integration setup.
+
+
+OpenSync Datto RMM data to IT Glue
+In IT Glue, navigate to Account > Integrations.
+For the Datto RMM account you wish to sync, click Actions > Start Manual Sync.
+When the sync is complete, the Status column changes from Syncing... to OK.
+
+OpenMatch IT Glue organizations and configurations
+IT Glue discovers organizations (Datto RMM sites) and configurations (Datto RMM devices) and attempts to match them to data in your account. You have the option to manually match any data that isn't matched automatically.
+
+Matching organizations (Datto RMM sites)
+In IT Glue, navigate to Account > Integrations.
+For the Datto RMM account you are syncing, click Actions > Matching.
+In the Unmatched tab, review the unmatched organizations.
+For any unmatched organizations, you can either accept the suggested match, search for and select an IT Glue organization by entering its name in the Match To column, or create a new organization by clicking Actions > Create Organization. You can also choose to ignore groups, which means they won't count as unmatched items in subsequent syncs.
+IMPORTANT  Before creating an organization from the matching screen, ensure that no corresponding organization already exists, otherwise a duplicate will be created.
+
+If any matches in the Matched tab are incorrect, click Actions > Change Match and select a different organization to match to.
+Once all organizations have been matched, the same process should be followed for any unmatched configurations.
+
+Matching configurations (Datto RMM devices)
+From the Matched tab in IT Glue, navigate to any organization that has unmatched configurations. Click Actions > Match Devices.
+For any unmatched configurations, you can either accept the suggested match, search for and select an IT Glue configuration by entering its name in the Match To column, or create a new configuration by clicking Actions > Create Configuration.
+Before you create configurations, first match any of the devices based on MAC addresses or serial number (for example, virtual servers). When you're done matching, you can create (in bulk or individually) any of the remaining devices from your Datto RMM account.
+Repeat the preceding steps for each organization.
+OpenDisable the IT Glue Integration
+You can disable the integration in Datto RMM by clicking Turn Off within the API Details card. All of the integration and authentication settings will be deleted. The integration can be re-enabled at any time.
+
+INTEGRATIONS > Third-party integrations > ConnectWise
+
+
+
+
+
+ConnectWise PSA Integration
+OpenSecurity and navigation
+SECURITY  Administrator
+
+NAVIGATION  Setup > ConnectWise
+
+About the integration
+The ConnectWise PSA™ integration allows you to join together your Datto RMM and ConnectWise PSA accounts. This allows you to manage tickets created by Datto RMM (either manually or through automatic alerts) and to associate them with companies and devices within ConnectWise PSA. In addition, you can automate the mapping and creation of ConnectWise PSA configurations for Datto RMM devices.
+
+IMPORTANT  The ConnectWise PSA integration is configurable within the Datto RMM legacy UI only.
+
+Requirements
+To integrate ConnectWise PSA with Datto RMM, you will need to first download the ConnectWise PSA component from the ComStore.
+If you are connecting to an on-premise Connectwise PSA server, you will also need to add the IP addresses listed in IP addresses per platform (Outbound) for outbound communication.
+You must have a ConnectWise PSA Standard or Premium account. ConnectWise PSA Basic is not supported.
+How to...
+OpenDownload the ConnectWise component
+Log in to your Datto RMM account and click the ComStore tab.
+Search for the ConnectWise v2 component.
+Open the component and click Add to my Component Library to download it. This will add the ConnectWise tab to the Setup page within in Datto RMM.
+OpenConfigure a Security Role in ConnectWise PSA
+In ConnectWise PSA, navigate to System > Security Roles.
+Click the plus sign icon to create a new Security Role with the following permissions:
+Setting/Module	Add Level	Edit Level	Delete Level	Inquire Level
+Companies
+Company Maintenance	None	
+None
+
+None
+
+All
+
+Configurations	All	
+All
+
+None
+
+All
+
+Manage Attachments	All	None	None	All
+Management	None	
+None
+
+None
+
+All
+
+Finance
+Agreements	None	All	None	All
+Procurement
+Product Catalog	None	None	None	All
+Service Desk
+Close Service Tickets	None	All	None	All
+Service Tickets	All	All	None	All
+SLA Dashboard	None	None	None	All
+System    
+API Reports	None	None	None	All
+System Reports	None	None	None	All
+Table Setup	All	None	None	All
+OpenGenerate API Keys in ConnectWise PSA
+In ConnectWise PSA, navigate to System > Members.
+Navigate to the API Members tab.
+Click the plus sign icon to create a new member.
+In the System > Role ID field, select the Security Role created in Configure a Security Role in ConnectWise PSA.
+Enter the rest of the required details and then click the Save icon.
+Navigate to the API Keys tab.
+Select the member you wish to generate keys for and click the plus sign icon.
+Enter a description for your API keys and click the Save icon.
+Observe that a Public Key and a Private Key are generated, and make note of these keys. After initial creation, the Private Key will no longer be visible.
+
+OpenConfigure account synchronization
+In Datto RMM, navigate to Setup > ConnectWise.
+In the Connect to ConnectWise section, toggle the Enable field to ON to begin configuring the ConnectWise PSA integration.
+
+NOTE  If you have any other currently enabled PSA configurations, you must disable them first before you can enable the ConnectWise PSA integration.
+
+Enter the following details:
+Field	Description
+ConnectWise URL	The ConnectWise PSA URL. The site URL can point to an on-premises or cloud location, must include the appropriate protocol, and must not contain www. For example, https://connect.mycompanydomain.com.
+Company	Your company name that you use to log in to your ConnectWise PSA account.
+Public key	Refer to Generate API Keys in ConnectWise PSA.
+Private key	Refer to Generate API Keys in ConnectWise PSA.
+NOTE   All fields are required in order to complete the integration setup.
+
+Click Save and Check Now.
+Observe that a confirmation message will be displayed if the connection was successful.
+
+OpenMap ConnectWise PSA companies to Datto RMM sites
+In this section, you can link ConnectWise PSA companies to Datto RMM sites. This allows you to associate any ConnectWise PSA configurations automatically created from Datto RMM devices with the correct companies in ConnectWise PSA.
+
+Click Load Companies. You can filter the companies listed by using the Mapping, Type, and Status drop-down menu.
+Us
+
+NOTE  Selecting Mapped from the Mapping drop-down menu and clicking Load Companies will allow you to review existing mappings.
+
+NOTE  If a ConnectWise PSA company is configured to have multiple company types, the company can appear when loading companies for any of the associated company types. Once an RMM site is mapped to the company, it will no longer appear in the list to map for additional company types.
+
+NOTE  If a ConnectWise PSA company is configured to have multiple sites, the company will appear in the list multiple times for each company and site combination. Once a company and site combination is mapped to an RMM site, it will no longer appear in the list to map. The ConnectWise PSA company and site combination will also be reflected in any tickets generated. Refer to Round-trip ticketing.
+
+
+Observe that once the ConnectWise PSA companies have loaded, an attempt is made to match them with similarly named Datto RMM sites. If the matching is incorrect, you can select the correct site using the drop-down menu in the RMM Site column. The Search field enables you to narrow the results further.
+
+If no match is found, the drop-down menu in the RMM Site column defaults to Create New with the name of the site to be created.
+
+Select the check boxes for the companies you wish to map, and click Map Selected Companies to perform the mapping.
+
+NOTE  Once a company is mapped to a site, you can click the hyperlink within the RMM Site column to view the device's summary page within Datto RMM. Refer to Device Summary for more information.
+
+
+OpenUnmap ConnectWise PSA companies from Datto RMM sites
+Select one or more companies and then click Unmap Selected Companies.
+
+
+OpenMap Datto RMM device types to ConnectWise PSA configuration types
+This section allows you to link Datto RMM device types and ConnectWise PSA configuration types. These mappings only apply to new ConnectWise PSA configurations; they will not affect existing configurations.
+
+An attempt is made to match similarly named Datto RMM device types to ConnectWise PSA configuration types. Click Edit to modify incorrect mappings and use the drop-down menu to search for a better match. Click Save to save the mapping change or Cancel to discard your changes.
+
+
+NOTE  If the device type is changed in Datto RMM, the Type field in the configuration is correspondingly updated. The update will respect the mapping of device types and configuration types in ConnectWise PSA.
+
+NOTE  If none of the listed configuration types are appropriate, you will need to create a new configuration type within ConnectWise PSA.
+
+NOTE  If multiple warnings are encountered that prevent devices from being created, they will appear as pop-ups in the UI. Click Remove all ConnectWise warnings to clear these warnings.
+
+IMPORTANT  Datto RMM devices cannot be used to create new ConnectWise PSA configurations if the configuration type has any Questions selected as Required. A warning will display next to these fields in Datto RMM. Devices in Datto RMM can only be mapped to preexisting configurations in ConnectWise PSA (in which these questions have been already answered). To create new devices with these configuration types, questions must be cleared as Required in the Configuration Setup Table within the ConnectWise PSA interface. For more information, refer to Configuration Setup Table.
+
+OpenAgreement Mapping
+IMPORTANT  To complete this section, you must already have an Agreement with at least one Addition configured in ConnectWise PSA. You must also have the required Finance and Procurement permissions configured for your Security Role in ConnectWise PSA. Refer to Configure a Security Role in ConnectWise PSA.
+
+This section allows you to map Datto RMM device types to ConnectWise PSA Agreement Types and Product IDs. Click Edit to select the appropriate values from the drop-down menus.
+
+
+NOTE  Agreement Types and Product IDs that are Inactive in ConnectWise PSA will not be available for mapping in Datto RMM.
+
+In Datto RMM, a device quantity represents the number of devices in a site. Once you have completed this section and have also mapped sites to companies in the Map ConnectWise PSA companies to Datto RMM sites section, any devices that are mapped or unmapped in the Map Datto RMM devices to ConnectWise PSA configurations section will count toward the device quantity for a mapped site.
+
+Click Save to save your changes or Cancel to discard them. Once changes are saved, the relevant ConnectWise PSA Agreement will be determined based on the mapped Agreement Type, and the Addition associated with that Agreement will be updated based on the mapped Product ID. Within the Addition, the Total Quantity field represents the device quantity, which will be incremented or decremented automatically.
+
+
+NOTE  The Total Quantity field in ConnectWise PSA is only incremented or decremented when triggered by certain operations. If Agreement Mapping is configured after a Datto RMM device has already been synced with a ConnectWise PSA configuration, the Total Quantity field will not be updated to reflect the current total. You must first manually adjust the Total Quantity field in the Addition to reflect the number of Managed devices in Datto RMM. Once adjusted, the Total Quantity field will then be automatically incremented or decremented when triggered by one of the following operations:
+• Device is added (+1)
+• Device is deleted (-1)
+• Existing mapped device is moved to the current site (+1)
+• Existing mapped device is moved from the current site to another site (-1)
+• Device type is changed (+1/-1)
+• Datto RMM site is deleted (-1)
+
+OpenMap Datto RMM devices to ConnectWise PSA configurations
+Once the previous sections are configured, you can map Datto RMM devices to ConnectWise PSA configurations. You can choose to either enable automatic mapping or to manually configure the mappings. A table of all the Datto RMM devices you can map to configurations in ConnectWise PSA is displayed. If a device is already mapped, the mapping details are shown in the table. If a device is not mapped, the columns are blank. If a device is moved to another site within Datto RMM, the updated site is displayed in the table.
+
+IMPORTANT  When you initially view this section, the Automatically Map setting is disabled by default. It is recommended that you familiarize yourself with the matching logic described below and verify the setup before enabling automatic mapping.
+
+Automatic Mapping
+Toggling the Automatically Map setting to ON will reveal the Map Now button. Enabling this setting will trigger the matching logic described below when one of the following events occurs:
+
+The Map Now button is clicked.
+A new Datto RMM site is mapped to a ConnectWise PSA company.
+A new Datto RMM device is created in a mapped Datto RMM site.
+Mapping logic
+Refer to the following flowchart that describes the mapping logic.
+
+
+To summarize, it is considered a match as follows:
+
+An existing Manage Device link is present in ConnectWise PSA. Refer to Manage Datto RMM devices.
+A matching Serial Number is found in ConnectWise PSA. If more than one result is found, the following step is used to narrow the results.
+A matching Configuration Name is found in ConnectWise PSA. If more than one result is found, the following step is used to narrow the results.
+A matching Manufacturer is found in ConnectWise PSA. If more than one result is found, the following step is used to narrow the results.
+A matching Model Number is found in ConnectWise PSA. If more than one result is found, the logic is considered to have failed to find a match.
+If the matching logic fails, the option to create a new configuration is displayed with the name of the configuration to be created in brackets. The drop-down menu can also be used to manually select an appropriate ConnectWise PSA configuration. Multiple devices cannot map to the same configuration in ConnectWise PSA. Since a device can only be associated with one configuration, a new configuration will be created for each device being mapped.
+
+NOTE  When a device is moved from one site to another in Datto RMM, the matching ConnectWise PSA configuration will be inactivated in the original ConnectWise company. In the destination ConnectWise company, either a new configuration item will be created or an existing, matching configuration will be made active if the Automatically Map setting is ON.
+
+Manual Mapping
+Click Load Devices to load the table with either mapped or unmapped Datto RMM devices (depending on what is selected in the Mapping drop-down menu). Devices can be mapped individually, or you can map several devices at once. Leaving the drop-down menu on Create New (default) will create a new configuration in ConnectWise PSA.
+
+
+NOTE  Devices not currently mapped to configurations are shown by default. Select Mapped from the drop-down menu to view the devices that are already mapped.
+
+NOTE  Devices will be grayed out and unavailable to map until they have been audited by the Datto RMM platform.
+
+When listing existing Datto RMM device mappings, note that the following logic is in place to determine mapped status:
+
+If a Datto RMM device is in a different Datto RMM site than the linked ConnectWise PSA company, it is considered unmapped and should therefore be re-mapped before use.
+If a Datto RMM device is in the same Datto RMM site as the linked ConnectWise PSA company, it will retain its mapping.
+For unmapped Datto RMM devices, an attempt is made to suggest the most appropriate ConnectWise PSA configuration match for a Datto RMM device in the CW Name column (otherwise, you can create a new one if no match is found). In ConnectWise PSA, Datto RMM devices exist within configurations for the specified company. From there, you can see the configuration details for the device, including its Type, Status, Manufacturer, Model Number, Serial Number, and Warranty Date.
+
+
+NOTE  The Warranty Date field is synchronized to the Expiration Date field in ConnectWise PSA only if the Expiration Date field is empty. If the Warranty Date is edited in Datto RMM after the mapping is done, the Expiration Date field is not updated again in ConnectWise PSA. For information about the Warranty Date field in Datto RMM, refer to Edit device details in the legacy UI and Device Summary - New UI in the New UI.
+
+Once all selections have been verified, click the check boxes for the mappings you wish to perform and then click Map Selected Devices.
+
+
+OpenUnmap Datto RMM devices from ConnectWise PSA configurations
+Unmapping a device in Datto RMM will unmap the device from its configuration in ConnectWise PSA.
+
+To unmap a device, perform the following steps:
+
+Click the Unmap Selected Devices button for the device(s) you wish to unmap.
+Observe that the fields in the mapping table are now blank.
+Observe that the status of the device in its configuration within ConnectWise PSA remains Active.
+
+NOTE  A device will be automatically unmapped if it is deleted from Datto RMM, and its status will be set to Inactive within the configuration in ConnectWise PSA.
+
+NOTE  If a device is deleted from a configuration in ConnectWise PSA, it will remain mapped in Datto RMM until you unmap it.
+
+OpenMap Datto RMM alerts to ConnectWise PSA tickets
+This section allows you to enable the creation of ConnectWise PSA tickets, as well as to configure the ticket source and to map Datto RMM alert priorities to ConnectWise PSA ticket priorities.
+
+NOTE  For successful ticket creation, Service Boards must have a default team and status configured within ConnectWise PSA.
+
+Toggle the Enable field to ON to allow creation of ConnectWise PSA tickets.
+In the Source drop-down menu, select a ticket source. If this is changed later, any tickets created after the change will use the updated source.
+Select the appropriate ConnectWise PSA ticket priorities from the drop-down lists on the right to match the Datto RMM alert priorities on the left.
+
+In the Ticket Attributes section, select the Service Board, Type, Subtype, Open Status, and Closed Status in the drop-down menus for each origin.
+
+Click Save.
+NOTE   All Ticket Attributes can be overridden at the individual monitor level. You may specify whether new tickets will be created in ConnectWise PSA when adding or updating a monitoring alert for a device.
+
+IMPORTANT  You are not required to complete this section in order to map devices; however, a new ticket cannot be manually created for a device until it is mapped in ConnectWise PSA.
+
+NOTE  For information about Agent ticketing for end users, refer to Integrated ticketing with ConnectWise PSA.
+
+Configure repeating alert
+Within the Repeating Alert section, you can configure whether to consider a Datto RMM alert to be repeating if any Connectwise PSA tickets have been created for the same monitor and the same device within a configured timeframe (minutes/hours). Repeating alerts are only added to existing ConnectWise PSA tickets that are not resolved or closed.
+
+To configure a repeating alert, toggle the Enable field to ON. Enter a number for the timeframe, and then select either minutes or hours from the drop-down menu.
+
+
+Where repeating alerts are configured, when a ticket is resolved in ConnectWise PSA that contains multiple repeat alerts, all alerts associated with the resolved ticket will also be closed in Datto RMM.
+
+OpenDisable mapping Datto RMM alerts to ConnectWise PSA tickets
+You can disable ticket synchronization temporarily by toggling Enable to OFF within the Map RMM Alerts to ConnectWise Tickets section under Setup > ConnectWise. All of the ticket integration settings will be retained until the next time it is enabled. Tickets will begin generating from the moment ticket synchronization is re-enabled.
+
+OpenFinalize integration setup
+Once the settings are saved, the systems will synchronize. Tickets and device information generated by Datto RMM will now automatically be synchronized to ConnectWise PSA. When a ticket's details are updated in ConnectWise PSA, the change is automatically synchronized back to Datto RMM.
+
+OpenDisable the ConnectWise PSA integration
+You can disable the integration temporarily by toggling Enable to OFF within the Connect to ConnectWise section under Setup > ConnectWise. All of the integration settings will be retained until the next time the integration is enabled.
+
+Should you decide to disable the integration altogether, remove all settings and links between Datto RMM and ConnectWise PSA, and unmap any mapped devices from their ConnectWise PSA configurations, you will need to remove the ConnectWise component from your downloaded components. For more information on how to remove a component, refer to Manage your components in the legacy UI and Component Library - New UI in the New UI.
+
+Features
+OpenRound-trip ticketing
+Round-trip ticketing works automatically. When tickets are closed in ConnectWise PSA, the corresponding alert will be resolved in Datto RMM. When an alert is resolved in Datto RMM, the corresponding ticket will be closed in ConnectWise PSA.
+
+NOTE  Configuring which ticket statuses will cause tickets to be in a closed state in ConnectWise PSA (which triggers Datto RMM alerts to be resolved) is done within ConnectWise PSA.
+
+Tickets are generated by Datto RMM in one of two ways:
+
+Manually by selecting New Ticket from the Monitor Alerts page (legacy UI) or the Single Alert View page (New UI). Refer to Action bar icons in the legacy UI and Create Ticket in the New UI.
+Automatically by an alert generated based on a monitor configured for the device. Refer to Integrated ticketing with ConnectWise PSA in the legacy UI or ConnectWise PSA in the New UI. The ticket is then created and associated with the device's configuration within ConnectWise PSA.
+You can open the ticket by clicking the ticket number anywhere in the New UI:
+
+
+
+Alternatively, you can click the ticket number anywhere in the legacy UI:
+
+
+The ticket then opens in ConnectWise PSA.
+
+
+Diagnostic information about the device is only added to the ticket if diagnostic details are available in the alert. Refer to View and act on alert information in the legacy UI or Timeline in the New UI.
+
+
+NOTE  The RMM Device and RMM Alert fields are automatically generated by Datto RMM. Click the  icon next to these fields to go directly to the device or alert page respectively in Datto RMM.
+
+OpenManage Datto RMM devices
+To manage a device via ConnectWise PSA:
+
+On the Configuration page for the device, click the Manage Device link.
+
+Observe that you are automatically directed to that device's Device Summary page within Datto RMM. Refer to Device Summary in the legacy UI or Device Summary - New UI in the New UI for more information.
+NOTE  You must be logged into your Datto RMM account; otherwise you will be prompted to log in first.
+
+INTEGRATIONS > Third-party integrations > Splashtop
+
+
+
+
+
+Splashtop Remote Screen Share Integration
+OpenSecurity and navigation
+SECURITY  To enable the integration, refer to Setup > Integrations in Permissions.
+
+SECURITY  To access the Splashtop remote tool, refer to Remote control tools.
+
+NAVIGATION  New UI > Setup > Integrations
+
+About Splashtop
+Splashtop is a leading screen share application that provides fast and smooth remote connection to computers from various devices.
+
+The Splashtop Integration allows Datto RMM partners to remotely access computers using Splashtop technology. Splashtop deployment works by utilizing a server and a viewer application or, in Splashtop terms, a Streamer for the remote side and a Client for the viewing side.
+
+The Splashtop Integration offers the following benefits:
+
+Windows and macOS support
+Retina display support: The use of Splashtop gives remote takeover ability to retina display devices, as well as the ability to take over macOS devices unattended.
+Multiple user (Terminal Server) support and multiple monitor support
+Two concurrent connections to a single device
+Ability to enable blank screen remotely
+Remote keyboard and mouse locking
+Copy/paste clipboard on Windows devices at login screen
+Secure connection: All ports are routed through our secure tunnel servers when the connection is initiated from a Datto RMM Agent.
+Current Splashtop Streamer versions
+Windows: 3.5.2.1
+macOS: 3.5.2.0
+Splashtop system requirements
+Refer to this Splashtop Support article.
+
+NOTE  Also refer to Requirements in Connecting to a device using Splashtop.
+
+How to...
+OpenEnable the Splashtop Integration
+Navigate to New UI > Setup > Integrations > Splashtop.
+Click Turn On to enable the integration.
+
+In the confirmation dialog box, click Yes to proceed.
+
+A confirmation message will be displayed to indicate that the integration has been enabled.
+OpenInstall the Streamer
+The Splashtop installer, that is, the Splashtop Streamer, makes it possible to view a device remotely. When you connect to a device using Splashtop for the first time, the Splashtop Streamer will automatically be installed on the device. A confirmation dialog box will appear indicating that it may take a few moments for the Streamer to install; however, you can also choose to connect to the device using Web Remote. Refer to Web Remote.
+
+
+Alternatively, you can pre-install the Splashtop Streamer on Windows and macOS devices using the Pre-install Splashtop Streamer component from the ComStore. Refer to Download a component in the legacy UI and Download a component in the New UI.
+
+NOTE  When the Splashtop Streamer is installed, its icon will be hidden on the device by default.
+
+IMPORTANT  If you already have an account with Splashtop, installing the Splashtop Streamer through Datto RMM will remove your ability to configure your Splashtop Business Account credentials from within the Splashtop Streamer menu. If you would like to be able to configure your credentials from within the settings, we recommend that you use the installer provided by Splashtop. However, when using this login method, data will not be tunneled through our secure connection and is therefore not supported by Datto RMM.
+
+OpenInstall the Client
+Installation of the Client is automatic on each device upon the first time a connection of this type is initiated.
+
+NOTE  When the Splashtop session is initiated from a macOS device, and the remote endpoint does not have the Splashtop Client installed, the initiating device's Agent will install it on the endpoint. A pop-up window will prompt the initiating device's user to allow this action.
+
+OpenUpdate the Client and the Streamer
+The Client and the Streamer will automatically be updated in the same way Agents are updated when updates become available.
+
+OpenUninstall the Streamer
+You can uninstall the Splashtop Streamer from Windows and macOS devices using the Splashtop Uninstaller component from the ComStore. Refer to Download a component in the legacy UI and Download a component in the New UI.
+
+OpenDisable the Splashtop Integration
+Navigate to New UI > Setup > Integrations > Splashtop.
+Click Turn Off to disable the integration.
+
+In the confirmation dialog box, click Yes to proceed.
+
+A confirmation message will be displayed to indicate that the integration has been disabled.
+Connecting to a device using Splashtop
+OpenRequirements
+The device you wish to connect to must be online.
+The Splashtop Integration must be enabled. Refer to Enable the Splashtop Integration.
+The RDP option must be enabled in the Remote control tools section of your security level. Refer to Remote control tools.
+In order for Splashtop to function properly on macOS devices running Mojave and newer, the following applications must be listed and checked under System Preferences > Security & Privacy > Privacy in the following sections:
+• Screen Recording: AEM Agent, Splashtop Streamer
+• Accessibility: AEM Agent, Splashtop Streamer
+• Full Disk Access: AEM Agent, Splashtop Streamer
+If you are connecting to a remote user's macOS device running Mojave and newer, a pop-up notification will be displayed stating Splashtop Streamer.app would like to record this computer's screen. Direct the user to click Open System Preferences on the device and to select the application in the Privacy pane to allow interaction between their device and the Agent's VNC session using Vine Server.
+NOTE  Both Web Remote and Splashtop are not supported for remote takeover of headless devices (physical devices with no attached monitor) unless the device has an active virtual monitor. In these cases, third-party video adapters or other software can be used to generate a virtual display. RDP is an alternative remote takeover tool that functions for headless devices. Refer to RDP in Remote takeover tools.
+
+OpenWeb interface
+Legacy UI
+Navigate to a device you wish to connect to.
+If you are on a device list page, hover over the context menu  next to the device, and then hover over Remote Actions.
+If you are on the Device Summary page, hover over the  Remote Actions button.
+Click Splashtop to initiate a connection to the device. Refer to Remote Actions.
+New UI
+Navigate to a device you wish to connect to.
+If you are on a device list page, hover over the available remote support tools next to the device.
+If you are on the Device Summary page, hover over the Agent Browser action button.
+Click Splashtop to initiate a connection to the device. Refer to Remote support actions and Action buttons.
+OpenAgent Browser
+Log in to the Agent Browser. Refer to Log in to the Agent Browser.
+Search for the device. Refer to Search.
+Connect to device so that the device is displayed in the Connected Devices area. Refer to Connect to a device.
+Once connected, locate and click the Splashtop icon . Refer to Remote takeover tools.
+NOTE  For further information about the Agent Browser, refer to Agent Browser and Agent Browser tools.
+
+OpenRemote session controls
+Once the Splashtop window is open, the following toolbar functions become available:
+
+Icon	Name	Description
+	Disconnect	Ends the Splashtop session and disconnects the remote device.
+	Terminal Session	Shows if multiple RDP sessions are active on the remote device.
+	Switch Monitor	Allows you to view and switch between multiple monitors of the remote device.
+	View Options	Choose from the following options:
+• Size: original/scaled
+• Frame rate: high/medium/low
+• Show remote cursor
+	Full Screen	Allows you to toggle to a full screen view of the remote device. Click the Close Full Screen icon  to exit the full screen.
+NOTE  In full-screen mode, you can hide the toolbar by clicking the Hide Toolbar icon.
+
+
+	Ctrl-Alt-Del	Sends the key press combination of CTRL-ALT-DEL to the remote device.
+	Actions	The following options are available:
+• Blank screen
+• Lock keyboard and mouse
+• Paste clipboard as keystrokes
+Providing remote access to your end users
+OpenSubscribing to Splashtop Business Access
+Once you have configured the Splashtop Integration, you can connect to the devices you manage in Datto RMM using Splashtop. In some cases, however, your end users may want remote access capability, too. To learn how to grant remote access and control permissions to your end users, refer to this Splashtop Support article.
+
+INTEGRATIONS > Third-party integrations > VNC
+
+
+
+
+
+VNC Integration
+OpenSecurity and navigation
+SECURITY  To enable the integration, refer to Setup > Integrations in Permissions.
+
+SECURITY  To access the VNC remote tool, refer to Remote control tools.
+
+NAVIGATION  New UI > Setup > Integrations > VNC
+
+About VNC
+Virtual Network Computing (VNC) is a remote access technology that you can use to control a remote computer.
+
+How to...
+OpenEnable the VNC Integration
+NOTE  This setting only affects Windows devices.
+
+Navigate to New UI > Setup > Integrations > VNC.
+Click Turn On to enable the integration.
+
+In the confirmation dialog box, click Yes to proceed. This will allow the VNC service to be automatically downloaded and installed on Windows devices. Refer to VNC in Infrastructure and security.
+
+A confirmation message will be displayed to indicate that the integration has been enabled.
+NOTE  You can also enable the VNC Integration in the legacy UI in Setup > Account Settings > VNC Settings > Allow VNC > ON. Refer to VNC Settings.
+
+OpenDisable the VNC Integration
+NOTE  This setting only affects Windows devices.
+
+Navigate to New UI > Setup > Integrations > VNC.
+Click Turn Off to disable the integration.
+
+In the confirmation dialog box, click Yes to proceed. This will remove existing VNC services implemented by Datto RMM and associated files from all devices, and the Datto RMM Agent will not download and install the VNC service on newly added devices. In addition, the Agent Browser VNC tool and Web Remote fallback to VNC on Windows 7/Windows Server 2008 R2 will not be available. Refer to VNC and Guest GPU Acceleration.
+
+A confirmation message will be displayed to indicate that the integration has been disabled.
+NOTE  You can also disable the VNC Integration in the legacy UI in Setup > Account Settings > VNC Settings > Allow VNC > OFF. Refer to VNC Settings.
+
+NOTE  If the Datto RMM Agent is uninstalled from a device, the Datto RMM implementation of VNC will also be removed from that device. However, other implementations of VNC will not be affected.
+
+Connecting to a device using VNC
+OpenRequirements
+VNC does not allow user switching, and you cannot connect to a device where no user is logged in.
+
+To learn how to change the default password used in a VNC remote takeover session, refer to Configure the Agent and Agent Browser.
+
+Connecting to a Windows device
+The device you wish to connect to must be online.
+The VNC Integration must be enabled. Refer to Enable the VNC Integration.
+The Screen Share option must be enabled in the Remote control tools section of your security level. Refer to Remote control tools.
+Connecting to a macOS device
+The device you wish to connect to must be online.
+The Screen Share option must be enabled in the Remote control tools section of your security level. Refer to Remote control tools.
+In order for VNC to function properly on macOS devices running Mojave and newer, the following applications must be listed and checked under System Preferences > Security & Privacy > Privacy in the following sections:
+• Accessibility: AEM Agent, Vine Server
+• Full Disk Access: AEM Agent, Vine Server
+If Vine Server is updated for any settings within the panes under System Preferences > Security & Privacy > Privacy, you may need to remove the AEM Agent application from the list. Then, on the next activity requiring the AEM Agent application, the device will display a pop-up notification prompting you to re-add the application in order for the changes to take effect.
+If you are connecting to a remote user's macOS device running Mojave, a pop-up notification will be displayed stating AEM Agent.app would like to control this computer using accessibility features. Direct the user to click Open System Preferences on the device and to select the application in the Privacy pane to allow interaction between their device and the Datto RMM Agent's VNC session using Vine Server. Please note that Vine Server is installed during the Agent install and runs as user (instead of root) so that the above permission can take effect.
+OpenWeb interface
+Legacy UI
+Navigate to a device you wish to connect to.
+If you are on a device list page, hover over the context menu  next to the device, and then hover over Remote Actions.
+If you are on the Device Summary page, hover over the  Remote Actions button.
+Click Remote Takeover (VNC) to initiate a connection to the device. Refer to Remote Actions.
+OpenAgent Browser
+Log in to the Agent Browser. Refer to Log in to the Agent Browser.
+Search for the device. Refer to Search.
+Connect to device so that the device is displayed in the Connected Devices area. Refer to Connect to a device.
+Once connected, locate and click the VNC icon . Refer to Remote takeover tools.
+NOTE  For further information about the Agent Browser, refer to Agent Browser and Agent Browser tools.
+
+INTEGRATIONS > Third-party integrations > Webroot
+
+
+
+
+
+Webroot Endpoint Security Integration
+OpenSecurity and navigation
+SECURITY  Administrator
+
+NAVIGATION  Setup > Integrations > Webroot Security Agent (legacy UI). For New UI navigation paths, refer to Webroot SecureAnywhere Endpoint Protection - New UI.
+
+About Webroot
+Webroot provides cloud-based, real-time internet security against viruses, spyware, and other online threats. Its SecureAnywhere® suite of security products for endpoints, mobile devices, and corporate networks delivers advanced internet threat protection to customers.
+
+The Webroot Endpoint Security Integration allows MSPs to deploy Webroot's lightweight software and to monitor and support the endpoints secured by Webroot directly from Datto RMM. With the integration enabled and a Webroot Security Management policy configured, you can perform the following:
+
+Deploy Webroot to Windows and macOS devices
+Uninstall Webroot from your endpoints
+Monitor your endpoints to be alerted as per the criteria configured in the Webroot Security Management monitor details
+Run Webroot-specific commands on your endpoints from device list pages
+Report on the current status of Webroot throughout your device estate
+For information about how to set up a Security Management policy for Webroot, refer to Create a Security Management policy.
+
+Webroot in the New UI
+IMPORTANT  We strongly recommend that you discontinue use of the Webroot Endpoint Security Integration in the legacy UI if you have not yet transitioned to the updated functionality in the New UI. Doing so as soon as possible will ensure that you do not face complications when the legacy UI framework is removed.
+
+In the New UI, the extension-based Webroot integration from the ComStore is no longer necessary. In its place are powerful new features now built into the web interface, such as:
+
+Automatic, scalable Webroot deployments via Software Management
+Remote Webroot-specific actions accessible to technicians on the Device Summary page or device list pages
+Monitoring capabilities for Webroot installation and status compliance
+Webroot-specific monitoring, such as alerting to infections or devices requiring attention
+To learn about Webroot deployment, monitoring, and remote actions in the New UI, refer to Webroot SecureAnywhere Endpoint Protection - New UI and Webroot in the New UI Q&A.
+
+OpenRequirements
+You must be an Administrator in Datto RMM to set up the Webroot Integration.
+You need at least one valid Webroot Site Key to be able to configure the Webroot Integration. You can obtain it from the Webroot Console once you log into the Console. For assistance, please contact Webroot.
+IMPORTANT  Do not use the Webroot Parent Keycode when configuring the integration.
+
+OpenSupported versions
+8.0.4.47 and later versions for both Windows and macOS
+OpenSupported operating systems
+OpenWindows
+For a full list of supported Windows operating systems, as well as general, hardware, and software requirements, refer to the following Webroot article and scroll down to the For PC section:
+
+Webroot SecureAnywhere System Requirements
+
+OpenmacOS
+For a full list of supported Mac operating systems, as well as general, hardware, and software requirements, refer to the following Webroot article and scroll down to the For Mac section:
+
+Webroot SecureAnywhere System Requirements
+
+OpenLogs
+Webroot logs are stored in the following locations:
+
+Windows	macOS
+C:\ProgramData\CentraStage\EndpointSecurity\aes\wr-install-{date}.log	/usr/local/share/CentraStage/EndpointSecurity/aes/wr-install-{date}.log
+How to...
+OpenDownload the Webroot component
+Log into your Datto RMM account and click the ComStore tab.
+Search for the Webroot Endpoint Security component.
+Open it and click Add to my Component Library to download it. This will add the Webroot Security Agent section to Setup > Integrations.
+NOTE  As soon as you download Webroot for your account, a new section will be added to Site Settings. Refer to Webroot Security Agent.
+
+OpenConfigure your mapping rules
+NOTE  This step is optional, and mapping rules can only be used when importing Site Keys. Refer to Import your Site Keys.
+
+You can specify mapping rules that will associate a set of characters from the Webroot site name with a set of characters from the Datto RMM site name. The association of Webroot sites with Datto RMM sites will be performed automatically upon importing your Webroot Site Keys, so you will not have to manually map the imported Site Keys.
+
+EXAMPLE  For example, having the rule to associate "location" with "office" will map your Webroot Site Key called "Location 1" to your Datto RMM site called "Office 1". For information about importing your Site Keys, refer to Add or import your Webroot Site Keys.
+
+Navigate to Setup > Integrations.
+Locate Webroot Security Agent.
+In the Mapping Rules section, click Add New Mapping Rule.
+In the Add New Mapping Rule window, enter your Webroot variable and Datto RMM site variable, and click Add.
+
+
+The new mapping rule will be added to the Mapping Rules section of the Webroot Integration.
+You can now import your Webroot Site Key(s) and if a matching variable is found, your corresponding Datto RMM site(s) will be associated with the Webroot Site Key(s).
+OpenAdd or import your Webroot Site Keys
+Before you can create a Webroot Security Management policy in Datto RMM, you need to add your Webroot Site Key(s) to the Webroot Integration. You have two options to do so: add your Site Keys manually or import them.
+
+Add your Site Keys manually
+In the Site Keys section, click Add Webroot Site Key. The Add New Webroot Site Key window will open.
+
+
+Complete the following fields:
+Field	Description
+Name	Enter a name for the Webroot Site Key.
+NOTE  This field has a limit of 255 characters.
+
+Description	Enter a description for the Webroot Site Key.
+Site Key	Enter your Webroot Site Key. You can obtain it from the Webroot Console. Refer to Requirements.
+Mapping to AEM Site	Click Manual Mapping to be able to map your selected Datto RMM site(s) to this Webroot Site Key.
+Click Add.
+Should you wish to add more than one Webroot Site Key, repeat steps 1-3.
+Import your Site Keys
+You can also import your Webroot Site Keys to Datto RMM. Click Download CSV Template, Download XLS Template, or Download XLSX Template to the right of the screen, just above the Site Keys section.
+Open the downloaded file and add the following information: Name, Description, and Site Key. For information about Site Keys, refer to Requirements. Save your file.
+NOTE  The Name field has a limit of 255 characters.
+
+Click Import Webroot Site Keys in the Datto RMM Web Portal. Browse your saved file and upload it to the Web Portal. Your Site Key information will now appear on the Integrations page.
+
+
+NOTE  If you have set up mapping rules, your Webroot Site Keys will automatically be associated with your Datto RMM sites. Refer to Configure your mapping rules.
+
+You have the option to set one of the Site Keys as default by selecting the Default Site Key radio button.
+The default Site Key will be used in Webroot Security Management policies if there is no Site Key associated with the Datto RMM site that the device belongs to. For further information, refer to Create a Security Management policy.
+NOTE  The Number of Devices column displays the number of devices targeted by a Webroot Security Management policy using the site key in question. Once a device is added to the policy or removed from it (by being removed from the target of the policy or by getting excluded from the policy associations), the device count will increase or decrease accordingly.
+
+NOTE  To edit a Webroot Site Key, click the pencil icon  next to it and update the information. You can also update its mapping rule. To delete a Site Key, click the Remove this License Key icon  next to it.
+
+OpenDeploy Webroot and enable monitoring
+Now that you have set up the integration, you can use Datto RMM to deploy Webroot to your endpoints.
+
+Set up a Security Management policy to push out Webroot to your devices and to raise alerts and tickets as per the criteria you set in the monitor details. You can create the policy at either account or site level. For further information, refer to Create a Security Management policy.
+
+OpenUse the Webroot Security Management commands
+Once you have downloaded Webroot Endpoint Security from the ComStore, the Webroot Run Security Management Command button  becomes available in the Action bar on the Devices page in each Managed site. Selecting a device and clicking this button will allow you to perform quick Webroot actions on your device or run Webroot Console commands on it. The results of the Webroot Console commands will be shown in your Webroot Console.
+
+Navigate to Sites and open a managed site associated with a Webroot Security Management policy. To learn about Webroot policies, refer to Create a Security Management policy.
+Click the Devices tab.
+Select one or more of your devices targeted by the Security Management policy, and click the Webroot Run Security Management Command button in the action bar.
+
+The following commands will become available:
+NOTE  The selected device needs to be targeted by a Webroot Security Management policy so that you can run a Security Management command on it.
+
+AEM Webroot Actions
+Activate Security Management	Re-activates the site's Webroot Security Management policy on the selected device(s) either by including the device(s) in the policy target again or by re-activating a disabled policy.
+NOTE  This action will only take place if the selected device has previously been targeted by a Webroot policy.
+
+Deactivate Security Management	Excludes the selected device(s) from the site's Webroot Security Management policy.
+Uninstall Security Product	Uninstalls Webroot from the device. The Password field should be left blank.
+If Webroot was installed on the device outside of Datto RMM (via an .exe installer), you can uninstall it locally or use a component to uninstall it non-silently using wsasme.exe -uninstall. Contact Webroot support for more information.
+Reset Security Status Webroot	Resets the Security Management status on the device and triggers a deployment of Webroot if it's not installed on it.
+EXAMPLE  For example, if the installation of Webroot had been unsuccessful on your device through a Webroot policy, but you managed to solve the issue on your device in the meantime, running this command will attempt to install Webroot on your device again.
+
+ 
+
+Webroot Console Commands
+Trigger "Agent Poll"	Triggers a poll and program update by forcing the device to check in to the cloud.
+Run a Deep Scan	Runs a deep scan on the device.
+Run Full System Scan	Runs a full system scan on the device.
+NOTE  Running a full system scan is slower and uses more resources than the default deep scan; therefore, we recommend you run a default deep scan on your device(s).
+
+Run Scan With Clean-Up	Runs a scan on the device and automatically removes any detected infections.
+Verify Authenticity of Webroot Services	Forces the device to check in to the cloud to see if Webroot services are authentic.
+Trigger a File Scan	Triggers a scan of a specific file or path on the device. Once the command is selected, you can enter the required path name.
+Enable Realtime Protection	Enables real-time protection if the Webroot agent is offline.
+Once you have selected a command, click OK, and the requested action will be performed.
+NOTE  Scans performed by the Webroot agent run silently. The Webroot tray icon will not change when a scan is running.
+
+OpenUninstall Webroot
+To be able to uninstall Webroot from your endpoints, you must ensure the Webroot Endpoint Security Integration is enabled and set up for your account and your endpoints are targeted with a Webroot Security Management policy. To uninstall Webroot from these devices:
+
+Log in to your Datto RMM account and navigate to the account or site policy which targets the devices you want to uninstall Webroot from.
+Remove the required devices from the list of target devices.
+Make sure that the Uninstall Webroot option is selected in the Security Management Install Options section.
+Click Save and Push Changes.
+If you click Save Only, you'll be directed to your list of policies where you can click Push changes... next to the policy in question.
+
+NOTE  You can also run the Uninstall Security Product command on your devices. For more information, refer to Use the Webroot Security Management commands.
+
+OpenCheck statistics and report
+To learn how to see information and statistics about your devices with Webroot installed, refer to Security Management.
+
+You can report on the latest value and status of your Webroot Security Management monitor by scheduling a Device Monitor Status report. Refer to Device Monitor Status in the legacy UI and Device Monitor Status report in the New UI.
+
+You can also create a custom filter to search for devices with a specific Security Management status. Refer to Filters.
+
+
+ 
